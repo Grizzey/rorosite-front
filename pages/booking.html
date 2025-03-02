@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <title>Montecillo Roro</title>
+    <script src="./script.js"></script>
+</head>
+
+<body class="h-full scroll-smooth">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full h-20 py-4 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
+        <a href="../index.html" class="text-lg font-bold flex items-center">
+            <img src="../assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-6 text-lg">
+            <a href="../index.html" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Home</a>
+            <a href="#" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Routes & Schedules</a>
+            <a href="#" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Rates</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-button" class="md:hidden text-black focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
+            <a href="../index.html" class="block py-2 text-stone-100">Home</a>
+            <a href="#" class="block py-2 text-stone-100">Routes & Schedules</a>
+            <a href="#" class="block py-2 text-stone-100">Rates</a>
+        </div>
+    </nav>
+
+    <div class="relative w-full h-100">
+        <div class="bg-orange-500 absolute inset-0"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+            <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Routes & Schedules</p>
+            <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENTS HERE PLS -->
+
+    <section class="w-full py-20 px-6 sm:px-20 bg-white text-center">
+        <h2 class="text-2xl sm:text-3xl font-bold text-black">Vision and Mission</h2>
+        <p class="text-neutral-500 text-lg sm:text-xl mt-6">
+            To be the leading provider of safe, reliable, and comfortable transportation for everyone.
+            Setting the standard for excellence in travel across the Philippines.
+        </p>
+        <p class="text-neutral-500 text-lg sm:text-xl mt-4">
+            Our mission is to ensure the safety and peace of mind of our passengers with Montecillo Roro services.
+            We maintain high safety standards for everyone on board.
+        </p>
+    </section>
+
+
+
+    <footer class="w-full bg-gray-900 py-10 text-center text-white">
+        &copy; 2025 Montecillo Roro. All Rights Reserved.
+    </footer>
+</body>
+
+</html>
