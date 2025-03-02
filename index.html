@@ -1,12 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://github.com/Grizzey/rorosite-front.git" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Document</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbar = document.getElementById("navbar");
+            const navLinks = document.querySelectorAll(".nav-link"); // Select all nav links
+
+            window.addEventListener("scroll", function () {
+                if (window.scrollY > 50) {
+                    navbar.classList.remove("bg-transparent");
+                    navbar.classList.add("bg-blue-400", "shadow-md");
+
+                    // Change text color to white
+                    navLinks.forEach(link => {
+                        link.classList.remove("text-black");
+                        link.classList.add("text-white");
+                    });
+                } else {
+                    navbar.classList.add("bg-transparent");
+                    navbar.classList.remove("bg-blue-400", "shadow-md");
+
+                    // Change text color to black
+                    navLinks.forEach(link => {
+                        link.classList.remove("text-white");
+                        link.classList.add("text-black");
+                    });
+                }
+            });
+        });
+    </script>
 </head>
-<body>
-    Front end
+
+<body id="page" class="h-1000 scroll-smooth">
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full h-20 py-2 px-10 flex items-center z-50 text-lg transition-all duration-300 bg-transparent text-black"
+        style="user-select: none;">
+        <a id="nav_text" href="#" class="ml-30 mr-10"><img src="./assets/roro_transparent.png"
+                style="width: 60px;" /></a>
+        <a id="nav_text" href="#" class="mr-10 nav-link text-white">Home</a>
+        <a id="nav_text" href="#" class="mr-10 nav-link text-white">Routes & Schedules</a>
+        <a id="nav_text" href="#" class="mr-10 nav-link text-white">Rates</a>
+
+        <!--OLD BUTTON <button type="button"
+            class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Login
+            / Register</button> -->
+    </nav>
+
+    <div class="relative w-full h-screen" style="user-select: none;">
+        <!-- Video Background -->
+        <video autoplay muted loop id="front_vid" class="w-full h-full object-cover">
+            <source src="./assets/front_vid.mp4" type="video/mp4" />
+        </video>
+    
+        <!-- Overlay Text -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+            <p class="text-7xl font-bold drop-shadow-lg">Explore the Philippines</p>
+            <a class="text-lg mt-2 drop-shadow-lg">Speed, Quality, and Reliability</a>
+            <button type="button"
+            class="mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Book now</button>
+        </div>
+    </div>
+    
+    <div id="vision-mission" class="w-full h-100 bg-white px-50">
+        <p class="text-black text-[25px] pt-20 text-center">Vision and Mission </p>
+        <p class="text-neutral-500 text-[20px] pt-10">To be the leading provider of safe, reliable and most of all
+            comfortable transportation for everyone. <br> And setting the standard for excellence in traveling whatever
+            island you like in the Philippines.</p>
+
+        <p class="text-neutral-500 text-[20px] pt-10">Our mission is to ensure the safety and peace of mind of our every
+            passenger by Montecillo Roro transportation services. <br> We will provide and maintain a high safety
+            standards for everybody who will be riding with us.</p>
+    </div>
+
+    <div id="about" class="w-full h-150 bg-orange-400 px-50">
+        <p class="text-white text-[25px] pt-10 text-center">About us</p>
+        <p class="text-stone-300 text-[20px] pt-10 text-center">Captain Mangji Hasa Montecillio founded Montecillio Roro
+            in 1985. <br> Captain Montecillio was a talented Filipino mariner who dreamed of enhancing inter-island
+            transport within the Philippines.</p>
+
+        <button type="button"
+            class="mt-20 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Learn
+            more</button>
+    </div>
 </body>
+
 </html>
