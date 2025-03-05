@@ -7,8 +7,13 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Montecillo Roro | About us</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
 </head>
+
+<!-- 
+    sm:         -LOWER VALUE
+    so on...
+-->
 
 <body class="h-full scroll-smooth">
     <!-- Navbar -->
@@ -20,7 +25,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-6 text-lg">
             <a href="../index.html" class="nav-link text-black hover:text-orange-500 transition text-stone-100">Home</a>
-            <a href="#" class="nav-link text-black hover:text-orange-500 transition text-stone-100">Routes & Schedules</a>
+            <a href="../pages/booking.html" class="nav-link text-black hover:text-orange-500 transition text-stone-100">Routes & Schedules</a>
             <a href="#" class="nav-link text-black hover:text-orange-500 transition text-stone-100">Rates</a>
         </div>
 
@@ -39,6 +44,41 @@
         </div>
     </nav>
 
+    <div class="relative w-full h-100">
+        <div class="bg-stone-500 absolute inset-0 opacity-30"></div>
+        <img src="../assets/sea.jpg" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+            <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Our History</p>
+        </div>
+    </div>
+
+    <section class="flex flex-col sm:flex-row items-center w-full py-20 px-6 sm:px-20 bg-white text-center gap-6 sm:text-right sm:gap-10">
+        <img src="../assets/vecteezy_avatar-of-a-sailor-character_18932169.jpg" class="w-50 h-50 rounded-[100px]"/>
+        <p class="text-black text-lg sm:text-xl">
+            Captain Mangji Hasa Montecillo founded Montecillo Roro in 1985. Captain Montecillo was a talented Filipino mariner who dreamed of enhancing inter-island transport within the Philippines. With the mission to give sea travel efficiency and reliability, particularly between Batangas and adjacent provinces, Captain Montecillo launched his operations using a single ship that provided plain ferry services but rapidly became a hit among commuters and businesses alike.
+        </p>
+    </section>
+    
+    <section class="flex flex-col sm:flex-row items-center w-full py-20 px-6 sm:px-20 bg-[#1E3A8A] text-center sm:text-left gap-6 sm:gap-10">
+        <p class="text-white text-lg sm:text-xl">
+            As the demand increased, Montecillo Roro introduced the Batangas to Bulalacao route, serving commuters traveling to the southern region of Oriental Mindoro. The entry of this route further established the company as an important regional carrier, contributing to economic development and increased accessibility between the provinces.
+        </p>
+        <img src="https://placehold.co/500x250?text=500x250%20|%20Routes" />
+    </section>
+    
+    <section class="flex flex-col sm:flex-row items-center w-full py-20 px-6 sm:px-20 bg-white text-center gap-6 sm:text-right sm:gap-10">
+        <img src="https://placehold.co/500x250?text=500x250%20|%20Vessels+Gallery" />
+        <p class="text-black text-lg sm:text-xl">
+            Presently, Montecillo Roro has several vessels running on these routes, which are most popular, such as Batangas to Calapan, Calapan to Batangas, and Batangas to Bulalacao. Renowned for its high standards of safety, punctuality, and customer care, Montecillo Roro remains committed to playing a vital role in linking communities, serving businesses, and improving travel in the region.
+        </p>
+    </section>
+    
+    <section class="w-full py-20 px-6 sm:px-20 bg-orange-500 text-left">
+        <p class="text-white text-lg sm:text-xl">
+            In 1997, the firm launched its first flagship vessel, Montecillo Roro, a modern Roll-on/Roll-off (RoRo) ship capable of carrying both cargo and passengers, including cars. This ship changed the firm's capability to deliver secure services in important routes, such as the Batangas to Calapan route, which was a vital link between Batangas and Oriental Mindoro. The route from Calapan to Batangas was also a staple, delivering steady, secure, and speedy travel for both residents and tourists.
+        </p>
+    </section>
+    
     <footer class="w-full bg-gray-900 py-10 text-center text-white">
         &copy; 2025 Montecillo Roro. All Rights Reserved.
     </footer>
