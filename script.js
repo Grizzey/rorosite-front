@@ -22,3 +22,52 @@ document.addEventListener("DOMContentLoaded", function () {
         menu.classList.toggle("hidden");
     });
 });
+
+/// Login
+
+
+function togglePassVisibility() {
+    let PasswordField = document.getElementById("PasswordField");
+    
+    if (PasswordField.type == "password") {
+        PasswordField.setAttribute('type', 'text')
+    } else {
+        PasswordField.setAttribute('type', 'password')
+    }
+}
+
+async function submitLogin() {
+    const EmailField = document.getElementById("EmailField");
+    const PasswordField = document.getElementById("PasswordField");
+
+    let EmailValue = EmailField.value;
+    let PasswordValue = PasswordField.value;
+
+    loginUser(EmailValue, PasswordValue)
+}
+
+const loginUser = async (email, password) => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const idToken = await userCredential.user.getIdToken(); // 🔹 Get Firebase ID Token
+  
+      // Send ID token to your backend for verification
+      const response = await fetch("http://localhost:9015/verifyToken", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ idToken }),
+      });
+  
+      const data = await response.json();
+      console.log("Backend Response:", data);
+  
+      if (data.success) {
+        console.log("User authenticated!", data.user);
+      } else {
+        console.error("Authentication failed:", data.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error.message);
+    }
+  };
+  

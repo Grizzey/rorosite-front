@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Montecillo Roro | Booking</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script src="../script.js"></script>
 </head>
 
@@ -43,73 +45,35 @@
         </div>
     </nav>
 
-    <div class="relative w-full h-100">
+    <div class="relative w-full h-20">
         <div class="bg-blue-700 absolute inset-0"></div>
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-            <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Routes & Schedules</p>
             <!-- <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a> -->
         </div>
     </div>
 
     <!-- MAIN CONTENTS HERE PLS -->
 
-    <section
-        class="flex flex-col-reverse justify-center w-full py-20 px-12 gap-10 sm:flex-row sm:px-6 bg-white text-center">
-        <div class="flex flex-col text-left w-max justify-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-black">BATANGAS - CALAPAN</h2>
-            <p class="text-left">
-                TRAVEL TIME: 2 Hours <br>
-                Address: Barangay Santa Clara, Batangas City <br>
-                Mobile Nos.: 0961-827-6932
-            </p>
-            <div>
-                <a href="../pages/ticketing.html"
-                    class="bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Learn
-                    More</a>
+    <div class="h-fit">
+        <div class="rounded bg-stone-200 p-10 m-10 w-150 m-auto my-40">
+            <h1 class="mb-10">Login / Register</h1>
+            <div class="flex flex-col bg-blue z-1 gap-10">
+                <input class="rounded bg-stone-300 py-2 pl-5" id="EmailField" type="text" placeholder="Email" />
+                <div class="relative w-full">
+                    <input class="w-full rounded bg-stone-300 py-2 pl-5 pr-10" id="PasswordField" type="password" placeholder="Password">
+                    <button type="button" id="togglePassVisibility" class="absolute inset-y-0 right-3 flex items-center text-sm text-gray-500 fa fa-eye cursor-pointer" onclick="togglePassVisibility()"/>
+                </div>
+
+                <div id="button_holder" class="flex justify-evenly flex-col">
+                    <button class="py-2 px-4 bg-blue-400 rounded m-auto" type="button" onclick="submitLogin()">Login</button>
+                    <button class="text-stone-600 mt-7">Dont have an account? Register now</button>
+                </div>
             </div>
+            
         </div>
-        <img src="../assets/BAT-CAL.png" class="rounded-lg drop-shadow-lg" />
-    </section>
-
-    <section
-        class="flex flex-col-reverse sm:flex-row-reverse justify-center w-full py-20 px-6 sm:px-20 bg-orange-500 text-center gap-10">
-        <div class="flex flex-col text-right">
-            <h2 class="text-2xl sm:text-3xl font-bold text-white">BULALACAO - CATICLAN</h2>
-            <p class="text-white">
-                TRAVEL TIME: 3 Hours and 30 Minutes <br>
-                Address: Kabangkalan, Poblacion Bulalacao, Oriental Mindoro <br>
-                Mobile Nos.: 0929-845-4071
-            </p>
-            <div>
-                <a href="#"
-                    class="bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Learn
-                    More</a>
-            </div>
-        </div>
-        <img src="../assets/BUL-CAT.png" class="rounded-lg drop-shadow-lg" />
-    </section>
-
-    <section class="flex flex-col sm:flex-row justify-center w-full py-20 px-6 sm:px-20 bg-white text-center gap-10">
-        <div class="flex flex-col text-left">
-            <h2 class="text-2xl sm:text-3xl font-bold text-black">DUMANGAS - BANAGO</h2>
-            <p>
-                TRAVEL TIME: 1 Hour <br>
-                Address: Port of Dumangas, Sitio Nalu-oyan At Barangay Sapao, Dumangas, Iloilo <br>
-                Mobile Nos.: 0969-101-0597 / 0906-226-1149
-            </p>
-            <div>
-                <a href="#"
-                    class="bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Learn
-                    More</a>
-            </div>
-        </div>
-        <img src="../assets/DUM-BAN.png" class="rounded-lg drop-shadow-lg" />
-    </section>
-
-
-
-
-
+    </div>
+    
+   
     <footer class="w-full bg-gray-900 py-10 text-center text-white">
         &copy; 2025 Montecillo Roro. All Rights Reserved.
     </footer>
