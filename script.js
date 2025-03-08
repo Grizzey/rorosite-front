@@ -1,3 +1,5 @@
+import { auth, signInWithEmailAndPassword } from "./firebase";
+
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById("navbar");
     const navLinks = document.querySelectorAll(".nav-link");
