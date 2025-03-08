@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>Montecillo Roro | Login</title>
+    <title>Montecillo Roro | Register</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="../script.js" type="module"></script>
@@ -69,19 +69,23 @@
 
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <div class="w-full max-w-md p-8 bg-white shadow-lg rounded-xl">
-            <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Login</h1>
+            <h1 class="text-2xl font-semibold text-center text-gray-800 mb-6">Register</h1>
 
             <div id="error-message" class="hidden mb-4 p-2 text-red-700 bg-red-200 rounded text-center"></div>
 
             <div class="flex flex-col gap-6">
                 <input
                     class="rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                    id="EmailField" type="email" placeholder="Email" required />
+                    id="NameField" type="text" placeholder="Username" />
+
+                <input
+                    class="rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                    id="EmailField" type="email" placeholder="Email" />
 
                 <div class="relative">
                     <input
                         class="w-full rounded border border-gray-300 py-2 px-4 pr-10 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        id="PasswordField" type="password" placeholder="Password" required />
+                        id="PasswordField" type="password" placeholder="Password" />
                     <button type="button" id="togglePassVisibility"
                         class="absolute inset-y-0 right-3 flex items-center text-gray-600 hover:text-black"
                         onclick="togglePassVisibility()">
@@ -89,13 +93,13 @@
                     </button>
                 </div>
 
-                <button id="loginBtn"
+                <button id="registerBtn"
                     class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
-                    onclick="submitLogin()">Login</button>
+                    onclick="submitRegister()">Register</button>
 
                 <p class="text-center text-gray-600">
-                    Don't have an account?
-                    <a href="../pages/register.html" class="text-blue-500 hover:underline">Register now</a>
+                    Already have an account?
+                    <a href="../pages/login.html" class="text-blue-500 hover:underline">Login</a>
                 </p>
             </div>
         </div>

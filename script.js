@@ -1,4 +1,8 @@
-import { auth, signInWithEmailAndPassword } from "./firebase";
+import {
+    loginUser,
+    registerUser,
+    loadUserData
+} from "./loginHandler.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById("navbar");
@@ -27,49 +31,100 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /// Login
 
+async function submitLogin() {
+    let emailField = document.getElementById("EmailField");
+    let passwordField = document.getElementById("PasswordField");
+    let errorMessage = document.getElementById("error-message");
 
-function togglePassVisibility() {
-    let PasswordField = document.getElementById("PasswordField");
-    
-    if (PasswordField.type == "password") {
-        PasswordField.setAttribute('type', 'text')
-    } else {
-        PasswordField.setAttribute('type', 'password')
+    let isValid = true;
+
+    [emailField, passwordField].forEach(field => {
+        if (field.value.trim() === "") {
+            field.classList.add("border-red-500");
+            isValid = false;
+        } else {
+            field.classList.remove("border-red-500");
+        }
+    });
+
+    if (!isValid) {
+        errorMessage.textContent = "Please fill out all fields.";
+        errorMessage.classList.remove("hidden");
+        return;
     }
-}
 
-function submitLogin() {
-    const EmailField = document.getElementById("EmailField");
-    const PasswordField = document.getElementById("PasswordField");
+    errorMessage.classList.add("hidden");
 
-    let EmailValue = EmailField.value;
-    let PasswordValue = PasswordField.value;
-
-    loginUser(EmailValue, PasswordValue)
-}
-
-const loginUser = async (email, password) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const idToken = await userCredential.user.getIdToken(); // 🔹 Get Firebase ID Token
-  
-      // Send ID token to your backend for verification
-      const response = await fetch("https://rorosite-back.onrender.com/verifyToken", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ idToken }),
-      });
-  
-      const data = await response.json();
-      console.log("Backend Response:", data);
-  
-      if (data.success) {
-        console.log("User authenticated!", data.user);
-      } else {
-        console.error("Authentication failed:", data.message);
-      }
+        await loginUser(emailField.value, passwordField.value);
+
+
+        await loadUserData(user.uid);
     } catch (error) {
-      console.error("Login error:", error.message);
+        errorMessage.textContent = "Login failed: " + error.message;
+        errorMessage.classList.remove("hidden");
     }
-  };
-  
+}
+
+async function submitRegister() {
+    const nameField = document.getElementById("NameField");
+    const emailField = document.getElementById("EmailField");
+    const passwordField = document.getElementById("PasswordField");
+    const errorMessage = document.getElementById("error-message");
+
+    let nameValue = nameField.value.trim();
+    let emailValue = emailField.value.trim();
+    let passwordValue = passwordField.value.trim();
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    let isValid = true;
+
+    // Validate empty fields
+    [nameField, emailField, passwordField].forEach(field => {
+        if (field.value === "") {
+            field.classList.add("border-red-500");
+            isValid = false;
+        } else {
+            field.classList.remove("border-red-500");
+        }
+    });
+
+    if (!isValid) {
+        errorMessage.textContent = "Please fill out all fields.";
+        errorMessage.classList.remove("hidden", "text-green-500", "bg-green-200");
+        errorMessage.classList.add("text-red-700", "bg-red-200");
+        return;
+    }
+
+    // Validate email format
+    if (!emailRegex.test(emailValue)) {
+        errorMessage.textContent = "Please enter a valid email address.";
+        errorMessage.classList.remove("hidden", "text-green-500", "bg-green-200");
+        errorMessage.classList.add("text-red-700", "bg-red-200");
+        return;
+    }
+
+    errorMessage.classList.add("hidden");
+
+    try {
+        await registerUser(emailValue, passwordValue, nameValue);
+
+        errorMessage.textContent = "Registration successful! Redirecting...";
+        errorMessage.classList.remove("hidden", "text-red-700", "bg-red-200");
+        errorMessage.classList.add("text-green-500", "bg-green-200");
+
+        setTimeout(() => {
+            window.location.href = "login.html"; // Redirect after success
+        }, 3000);
+    } catch (error) {
+        errorMessage.textContent = "Registration failed: " + error.message;
+        errorMessage.classList.remove("hidden", "text-green-500", "bg-green-200");
+        errorMessage.classList.add("text-red-700", "bg-red-200");
+    }
+}
+
+
+window.submitLogin = submitLogin
+window.submitRegister = submitRegister
