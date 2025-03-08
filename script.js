@@ -38,7 +38,7 @@ function togglePassVisibility() {
     }
 }
 
-async function submitLogin() {
+function submitLogin() {
     const EmailField = document.getElementById("EmailField");
     const PasswordField = document.getElementById("PasswordField");
 
