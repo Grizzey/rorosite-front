@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebas
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-// 🔹 Fetch Firebase Config from Backend
 const getFirebaseConfig = async () => {
     try {
         const response = await fetch("https://rorosite-back.onrender.com/config");
@@ -21,21 +20,17 @@ const initializeFirebase = async () => {
     auth = getAuth(app);
     db = getFirestore(app);
 
-    // ✅ Listen for Auth State Changes *AFTER* Firebase is initialized
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log("User is logged in:", user);
+            console.log("[ getUsers | Success ] User is logged in");
             getUserData(user.uid);
         } else {
-            console.log("No user is logged in.");
+            console.log("[ getUsers | Fail ] No user is logged in. Now Redirecting");
+            window.location.href = "login.html";
         }
     });
 };
 
-// ✅ Start Firebase Initialization
-initializeFirebase();
-
-// ✅ Function to get user data from Firestore
 const getUserData = async (userId) => {
     if (!db) {
         console.error("[ getUsers | Fail ] Firestore not initialized yet.");
@@ -49,5 +44,10 @@ const getUserData = async (userId) => {
         console.log("[ getUsers | Success ] User data Found");
     } else {
         console.log("[ getUsers | Fail ] No user data Found");
+        window.location.href = "login.html";
     }
 };
+
+
+initializeFirebase();
+
