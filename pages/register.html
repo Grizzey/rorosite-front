@@ -26,102 +26,114 @@
 </head>
 
 <body class="h-full scroll-smooth">
-    <!-- Navbar -->
-    <nav id="navbar"
-        class="fixed w-full h-20 py-4 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
-        <a href="../index.html" class="text-lg font-bold flex items-center">
-            <img src="../assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
-        </a>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-6 text-lg">
-            <a href="../index.html" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Home</a>
-            <a href="../pages/booking.html"
-                class="nav-link text-black hover:text-stone-500 transition text-stone-100">Routes & Schedules</a>
-            <a href="#" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Rates</a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="menu-button" class="md:hidden text-black focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
-            <a href="../index.html" class="block py-2 text-stone-100">Home</a>
-            <a href="../pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
-            <a href="#" class="block py-2 text-stone-100">Rates</a>
-        </div>
-    </nav>
-
-    <div class="relative w-full h-20">
-        <div class="bg-blue-700 absolute inset-0"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-            <!-- <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a> -->
-        </div>
+    <div id="loader" class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
+        <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
-    <!-- MAIN CONTENTS HERE PLS -->
+    <div>
+        <!-- Navbar -->
+        <nav id="navbar"
+            class="fixed w-full h-20 py-4 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
+            <a href="../index.html" class="text-lg font-bold flex items-center">
+                <img src="../assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
+            </a>
 
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-        <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-semibold text-center text-gray-800">Register</h2>
-        
-            <div class="flex flex-col gap-4 mt-4">
-                <div id="error-message" class="hidden mb-4 p-2 text-red-700 bg-red-200 rounded text-center"></div>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="../index.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Home</a>
+                <a href="/pages/booking.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Routes & Schedules</a>
+                <a href="/pages/rates.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Rates</a>
+            </div>
 
-                <!-- First & Last Name -->
-                <div class="flex gap-4">
-                    <input
-                        class="w-1/2 rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        id="firstNameField" type="text" placeholder="First Name" />
-                    
-                    <input
-                        class="w-1/2 rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        id="lastNameField" type="text" placeholder="Last Name" />
-                </div>
-        
-                <!-- Email -->
-                <input
-                    class="w-full rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                    id="EmailField" type="email" placeholder="Email" />
-        
-                <!-- Password with Toggle -->
-                <div class="relative">
-                    <input
-                        class="w-full rounded border border-gray-300 py-2 px-4 pr-10 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                        id="PasswordField" type="password" placeholder="Password" />
-                    <button type="button" id="togglePassVisibility"
-                        class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-black"
-                        onclick="togglePassVisibility()">
-                        <i class="fa fa-eye"></i>
-                    </button>
-                </div>
-        
-                <!-- Register Button -->
-                <button  onclick="submitRegister()" id="registerBtn"
-                    class="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300">
-                    Register
-                </button>
-        
-                <!-- Already Have Account? -->
-                <p class="text-center text-gray-600">
-                    Already have an account?
-                    <a href="../pages/login.html" class="text-blue-500 hover:underline">Login</a>
-                </p>
+            <!-- Mobile Menu a -->
+            <button id="menu-button" class="md:hidden text-black focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
+                <a href="../index.html" class="block py-2 text-stone-100">Home</a>
+                <a href="/pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
+                <a href="/pages/rates.html" class="block py-2 text-stone-100">Rates</a>
+            </div>
+        </nav>
+
+        <div class="relative w-full h-20">
+            <div class="bg-blue-700 absolute inset-0"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+                <!-- <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a> -->
             </div>
         </div>
-        
+
+        <!-- MAIN CONTENTS HERE PLS -->
+
+        <div class="flex flex-col gap-5 items-center justify-center min-h-screen bg-gray-100">
+            <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold text-center text-gray-800">Register</h2>
+
+                <div class="flex flex-col gap-4 mt-4">
+                    <div id="error-message" class="hidden mb-4 p-2 text-red-700 bg-red-200 rounded text-center"></div>
+
+                    <!-- First & Last Name -->
+                    <div class="flex gap-4">
+                        <input
+                            class="w-1/2 rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            id="firstNameField" type="text" placeholder="First Name" />
+
+                        <input
+                            class="w-1/2 rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            id="lastNameField" type="text" placeholder="Last Name" />
+                    </div>
+
+                    <!-- Email -->
+                    <input
+                        class="w-full rounded border border-gray-300 py-2 px-4 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                        id="EmailField" type="email" placeholder="Email" />
+
+                    <!-- Password with Toggle -->
+                    <div class="relative">
+                        <input
+                            class="w-full rounded border border-gray-300 py-2 px-4 pr-10 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                            id="PasswordField" type="password" placeholder="Password" />
+                        <button type="button" id="togglePassVisibility"
+                            class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-black"
+                            onclick="togglePassVisibility()">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+
+                    <!-- Register Button -->
+                    <button onclick="submitRegister()" id="registerBtn"
+                        class="w-full py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300">
+                        Register
+                    </button>
+
+                    <!-- Already Have Account? -->
+                    <p class="text-center text-gray-600">
+                        Already have an account?
+                        <a href="../pages/login.html" class="text-blue-500 hover:underline">Login</a>
+                    </p>
+                </div>
+            </div>
+            <div class="opacity-60 w-full max-w-md p-3 bg-red-200 shadow-lg rounded-xl border-red-400 border-[3px]">
+                <h1 class="text-xl font-semibold text-center text-red-600">This website is not completely done yet 😓
+                </h1>
+            </div>
+        </div>
+
+
+        <footer class="w-full bg-gray-900 py-10 text-center text-white">
+            &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
+        </footer>
     </div>
-
-
-    <footer class="w-full bg-gray-900 py-10 text-center text-white">
-        &copy; 2025 Montecillo Roro. All Rights Reserved.
-    </footer>
 </body>
 
 </html>

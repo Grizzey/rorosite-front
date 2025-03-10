@@ -5,111 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <title>Montecillo Roro | Booking</title>
+    <title>Montecillo Roro | Rates</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
     <script src="../script.js" type="module"></script>
 </head>
 
 <body class="h-full scroll-smooth">
-    <!-- Navbar -->
-    <nav id="navbar"
-        class="fixed w-full h-20 py-4 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
-        <a href="../index.html" class="text-lg font-bold flex items-center">
-            <img src="../assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
-        </a>
-
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-6 text-lg">
-            <a href="../index.html" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Home</a>
-            <a href="../pages/booking.html"
-                class="nav-link text-black hover:text-stone-500 transition text-stone-100">Routes & Schedules</a>
-            <a href="#" class="nav-link text-black hover:text-stone-500 transition text-stone-100">Rates</a>
-        </div>
-
-        <!-- Mobile Menu Button -->
-        <button id="menu-button" class="md:hidden text-black focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
-            <a href="../index.html" class="block py-2 text-stone-100">Home</a>
-            <a href="../pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
-            <a href="#" class="block py-2 text-stone-100">Rates</a>
-        </div>
-    </nav>
-
-    <div class="relative w-full h-50 sm:h-100">
-        <div class="bg-blue-700 absolute inset-0"></div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-            <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Route Rates</p>
-            <!-- <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a> -->
-        </div>
+    <div id="loader" class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
+        <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
-    <!-- MAIN CONTENTS HERE PLS -->
+    <div>
+        <!-- Navbar -->
+        <nav id="navbar"
+            class="fixed w-full h-20 py-4 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
+            <a href="../index.html" class="text-lg font-bold flex items-center">
+                <img src="../assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
+            </a>
 
-    <section
-        class="flex flex-col-reverse justify-center w-full py-20 px-12 gap-10 sm:flex-row sm:px-6 bg-white text-center">
-        <div class="flex flex-col text-left w-max justify-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-black">BATANGAS - CALAPAN</h2>
-            <p class="text-left">
-                TRAVEL TIME: 2 Hours <br>
-                Address: Barangay Santa Clara, Batangas City <br>
-                Mobile Nos.: 09XXXXXXXXX
-            </p>
-            <div>
-                <a href="../pages/login.html"
-                    class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book Now</a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-6 text-lg">
+                <a href="../index.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Home</a>
+                <a href="/pages/booking.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Routes & Schedules</a>
+                <a href="/pages/rates.html"
+                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Rates</a>
+            </div>
+
+            <!-- Mobile Menu a -->
+            <button id="menu-button" class="md:hidden text-black focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu"
+                class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
+                <a href="../index.html" class="block py-2 text-stone-100">Home</a>
+                <a href="/pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
+                <a href="/pages/rates.html" class="block py-2 text-stone-100">Rates</a>
+            </div>
+        </nav>
+
+        <div class="relative w-full h-50 sm:h-100">
+            <div class="bg-blue-700 absolute inset-0"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+                <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Route Rates</p>
+                <!-- <a href="/pages/booking.html" class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Book Now</a> -->
             </div>
         </div>
-        <img src="../assets/BAT-CAL_RATE.png" class="rounded-lg drop-shadow-lg" />
-    </section>
 
-    <section
-        class="flex flex-col-reverse sm:flex-row-reverse justify-center w-full py-20 px-6 sm:px-20 bg-orange-500 text-center gap-10">
-        <div class="flex flex-col text-right">
-            <h2 class="text-2xl sm:text-3xl font-bold text-white">BULALACAO - CATICLAN</h2>
-            <p class="text-white">
-                TRAVEL TIME: 3 Hours and 30 Minutes <br>
-                Address: Kabangkalan, Poblacion Bulalacao, Oriental Mindoro <br>
-                Mobile Nos.: 09XXXXXXXXX
-            </p>
-            <div>
-                <a href="../pages/login.html"
-                    class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book Now</a>
+        <!-- MAIN CONTENTS HERE PLS -->
+
+        <section
+            class="flex flex-col-reverse justify-center w-full py-20 px-12 gap-10 sm:flex-row sm:px-6 bg-white text-center">
+            <div class="flex flex-col text-left w-max justify-center">
+                <h2 class="text-2xl sm:text-3xl font-bold text-black">BATANGAS - CALAPAN</h2>
+                <p class="text-left">
+                    TRAVEL TIME: 2 Hours <br>
+                    Address: Barangay Santa Clara, Batangas City <br>
+                    Mobile Nos.: 09XXXXXXXXX
+                </p>
+                <div>
+                    <a href="../pages/login.html"
+                        class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book
+                        Now</a>
+                </div>
             </div>
-        </div>
-        <img src="../assets/BULA_CAT_RATE.png" class="rounded-lg drop-shadow-lg" />
-    </section>
+            <img src="../assets/BAT-CAL_RATE.png" class="rounded-lg drop-shadow-lg" />
+        </section>
 
-    <section class="flex flex-col sm:flex-row justify-center w-full py-20 px-6 sm:px-20 bg-white text-center gap-10">
-        <div class="flex flex-col text-left">
-            <h2 class="text-2xl sm:text-3xl font-bold text-black">DUMANGAS - BANAGO</h2>
-            <p>
-                TRAVEL TIME: 1 Hour <br>
-                Address: Port of Dumangas, Sitio Nalu-oyan At Barangay Sapao, Dumangas, Iloilo <br>
-                Mobile Nos.: 09XXXXXXXXX
-            </p>
-            <div>
-                <a href="../pages/login.html"
-                    class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book Now</a>
+        <section
+            class="flex flex-col-reverse sm:flex-row-reverse justify-center w-full py-20 px-6 sm:px-20 bg-orange-500 text-center gap-10">
+            <div class="flex flex-col text-right">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white">BULALACAO - CATICLAN</h2>
+                <p class="text-white">
+                    TRAVEL TIME: 3 Hours and 30 Minutes <br>
+                    Address: Kabangkalan, Poblacion Bulalacao, Oriental Mindoro <br>
+                    Mobile Nos.: 09XXXXXXXXX
+                </p>
+                <div>
+                    <a href="../pages/login.html"
+                        class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book
+                        Now</a>
+                </div>
             </div>
-        </div>
-        <img src="../assets/DUM-BAN_RATE.png" class="rounded-lg drop-shadow-lg" />
-    </section>
+            <img src="../assets/BULA_CAT_RATE.png" class="rounded-lg drop-shadow-lg" />
+        </section>
+
+        <section
+            class="flex flex-col sm:flex-row justify-center w-full py-20 px-6 sm:px-20 bg-white text-center gap-10">
+            <div class="flex flex-col text-left">
+                <h2 class="text-2xl sm:text-3xl font-bold text-black">DUMANGAS - BANAGO</h2>
+                <p>
+                    TRAVEL TIME: 1 Hour <br>
+                    Address: Port of Dumangas, Sitio Nalu-oyan At Barangay Sapao, Dumangas, Iloilo <br>
+                    Mobile Nos.: 09XXXXXXXXX
+                </p>
+                <div>
+                    <a href="../pages/login.html"
+                        class="mt-5 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition inline-block">Book
+                        Now</a>
+                </div>
+            </div>
+            <img src="../assets/DUM-BAN_RATE.png" class="rounded-lg drop-shadow-lg" />
+        </section>
 
 
-
-
-
-    <footer class="w-full bg-gray-900 py-10 text-center text-white">
-        &copy; 2025 Montecillo Roro. All Rights Reserved.
-    </footer>
+        <footer class="w-full bg-gray-900 py-10 text-center text-white">
+            &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
+        </footer>
+    </div>
 </body>
 
 </html>
