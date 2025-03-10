@@ -37,6 +37,7 @@ window.addEventListener("load", function () {
     document.getElementById("loader").classList.add("opacity-0");
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
+        document.getElementById("loader").style.display = "none";
     }, spinnerTimeout*100);
 });
 
@@ -52,7 +53,6 @@ document.querySelectorAll("a").forEach(link => {
         }, spinnerTimeout*100);
     });
 });
-
 
 /// Login
 
