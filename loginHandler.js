@@ -1,6 +1,20 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword, 
+    onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    getDoc, 
+    collection, 
+    addDoc 
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
 
 const getFirebaseConfig = async () => {
     try {
@@ -45,7 +59,7 @@ export const loginUser = async (email, password) => {
         if (data.success) {
             const userRef = doc(db, "users", user.uid);
             await setDoc(userRef, {
-                name: user.displayName || "Anonymous",
+                name: user.fullname,
                 email: user.email,
                 lastLogin: new Date().toISOString(),
             }, { merge: true });
@@ -64,8 +78,8 @@ export const loginUser = async (email, password) => {
     }
 };
 
-export const registerUser = async (email, password, name) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex for basic email validation
+export const registerUser = async (email, password, firstname, lastname) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
 
     if (!emailRegex.test(email)) {
         console.error("[ Handler | Fail ] Invalid email format.");
@@ -77,14 +91,27 @@ export const registerUser = async (email, password, name) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Save user data in Firestore
+        // 1️⃣ Save user data in Firestore
         await setDoc(doc(db, "users", user.uid), {
-            name: name,
+            firstname: firstname,
+            lastname: lastname,
+            fullname: `${firstname} ${lastname}`,
             email: user.email,
             createdAt: new Date().toISOString()
         });
 
-        console.log("[ Handler | Success ]", user);
+        console.log("[ Handler | Success ] User registered successfully:", user);
+
+        // 2️⃣ Add default ticket (optional)
+        const ticketsRef = collection(db, "users", user.uid, "tickets"); 
+        await addDoc(ticketsRef, {
+            title: "Welcome Ticket",
+            status: "Pending",
+            issuedAt: new Date().toISOString(),
+        });
+
+        console.log("[ Handler | Success ] Default ticket created for", user.uid);
+
     } catch (error) {
         console.error("[ Handler | Fail ] Registration error:", error.message);
         alert("Registration failed: " + error.message);
@@ -100,32 +127,5 @@ export const logoutUser = async () => {
         alert("Error logging out!");
     }
 };
-
-
-export async function loadUserData(uid) {
-    const userNameElement = document.getElementById("userName");
-    const userEmailElement = document.getElementById("userEmail");
-    const ticketListElement = document.getElementById("ticketList");
-
-    try {
-        const userDoc = await getDoc(doc(db, "users", uid));
-        if (userDoc.exists()) {
-            userNameElement.textContent = userDoc.data().name;
-            userEmailElement.textContent = userDoc.data().email;
-        }
-
-        const ticketsSnapshot = await getDocs(collection(db, "users", uid, "tickets"));
-        ticketListElement.innerHTML = "";
-        ticketsSnapshot.forEach(doc => {
-            const ticket = doc.data();
-            const li = document.createElement("li");
-            li.classList.add("p-3", "bg-white", "rounded", "shadow");
-            li.textContent = `Ticket #${ticket.id} - ${ticket.status}`;
-            ticketListElement.appendChild(li);
-        });
-    } catch (error) {
-        console.error("Error fetching user data: ", error);
-    }
-}
 
 initializeFirebase();

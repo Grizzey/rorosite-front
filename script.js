@@ -1,8 +1,9 @@
 import {
     loginUser,
     registerUser,
-    loadUserData
 } from "./loginHandler.js";
+
+import { loadUserData } from "./getUser.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const navbar = document.getElementById("navbar");
@@ -56,9 +57,8 @@ async function submitLogin() {
     errorMessage.classList.add("hidden");
 
     try {
-        await loginUser(emailField.value, passwordField.value);
-
-
+        const user = await loginUser(emailField.value, passwordField.value);
+    
         await loadUserData(user.uid);
     } catch (error) {
         errorMessage.textContent = "Login failed: " + error.message;
@@ -67,12 +67,15 @@ async function submitLogin() {
 }
 
 async function submitRegister() {
-    const nameField = document.getElementById("NameField");
+    const firstnameField = document.getElementById("firstNameField");
+    const lastnameField = document.getElementById("lastNameField");
+
     const emailField = document.getElementById("EmailField");
     const passwordField = document.getElementById("PasswordField");
     const errorMessage = document.getElementById("error-message");
 
-    let nameValue = nameField.value.trim();
+    let firstnameValue = firstnameField.value.trim();
+    let lastnameValue = lastnameField.value.trim();
     let emailValue = emailField.value.trim();
     let passwordValue = passwordField.value.trim();
 
@@ -82,7 +85,7 @@ async function submitRegister() {
     let isValid = true;
 
     // Validate empty fields
-    [nameField, emailField, passwordField].forEach(field => {
+    [firstnameField, lastnameField, emailField, passwordField].forEach(field => {
         if (field.value === "") {
             field.classList.add("border-red-500");
             isValid = false;
@@ -109,7 +112,7 @@ async function submitRegister() {
     errorMessage.classList.add("hidden");
 
     try {
-        await registerUser(emailValue, passwordValue, nameValue);
+        await registerUser(emailValue, passwordValue, firstnameValue, lastnameValue);
 
         errorMessage.textContent = "Registration successful! Redirecting...";
         errorMessage.classList.remove("hidden", "text-red-700", "bg-red-200");

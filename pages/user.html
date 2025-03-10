@@ -54,18 +54,22 @@
 
     <!-- MAIN CONTENTS HERE PLS -->
 
-    <section class="flex flex-col gap-10 w-screen p-5 bg-white py-30 pt-10 shadow-lg rounded-lg">
-        <div class="p-5 bg-stone-300 rounded-lg shadow">
+    <section class="flex flex-row sm:flex-col gap-10 w-screen mx-auto p-5 bg-white py-30 pt-10 shadow-lg rounded-lg justify-center items-center">
+        <div class="p-5 bg-stone-300 rounded-lg shadow w-full sm:w-auto text-center">
             <p class="text-3xl sm:text-2xl font-bold drop-shadow-lg">User Information</p>
             <p class="text-gray-700 mt-2">Name: <span id="userName"></span></p>
             <p class="text-gray-700">Email: <span id="userEmail"></span></p>
         </div>
-
-        <div class="p-5 bg-stone-300 rounded-lg shadow">
+    
+        <div class="p-5 bg-stone-300 rounded-lg shadow w-full sm:w-auto text-center">
             <p class="text-3xl sm:text-2xl font-bold drop-shadow-lg">Tickets</p>
-            <ul id="ticketList" class="mt-3 space-y-2"></ul>
+            <ul id="ticketList" class="mt-3 space-y-2">
+                <!--TICKET TEMPS GO HERE-->
+            </ul>
+
         </div>
     </section>
+    
 
     <footer class="w-full bg-gray-900 py-10 text-center text-white">
         &copy; 2025 Montecillo Roro. All Rights Reserved.
