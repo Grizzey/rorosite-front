@@ -30,14 +30,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+//SPINNERS
+let spinnerTimeout = 4 // ex. 2 => 2*100 => 200ms
+
 window.addEventListener("load", function () {
     document.getElementById("loader").classList.add("opacity-0");
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
-    }, 500);
+    }, spinnerTimeout*100);
 });
 
-// Show loader when navigating
 document.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", function (e) {
         e.preventDefault(); // Prevent instant navigation
@@ -46,8 +48,8 @@ document.querySelectorAll("a").forEach(link => {
         document.getElementById("loader").classList.remove("hidden", "opacity-0");
         
         setTimeout(() => {
-            window.location.href = href; // Navigate after slight delay
-        }, 500);
+            window.location.href = href;
+        }, spinnerTimeout*100);
     });
 });
 
