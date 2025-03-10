@@ -11,7 +11,7 @@
 </head>
 
 <body class="h-full scroll-smooth">
-    <div id="loader" class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
+    <div id="loader" class="fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
@@ -25,32 +25,29 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6 text-lg">
-                <a href="index.html"
-                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Home</a>
-                <a href="/pages/booking.html"
-                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Routes & Schedules</a>
-                <a href="/pages/rates.html"
-                    class="nav-link text-black hover:text-orange-500 transition text-stone-100">Rates</a>
+                <a href="index.html" class="nav-link text-white hover:text-neutral-300 transition">Home</a>
+                <a href="/pages/booking.html" class="nav-link text-white hover:text-neutral-300 transition">Routes & Schedules</a>
+                <a href="/pages/rates.html" class="nav-link text-white hover:text-neutral-300 transition">Rates</a>
             </div>
 
-            <!-- Mobile Menu a -->
+            <!-- Mobile Menu Button -->
             <button id="menu-button" class="md:hidden text-black focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-                    </path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
 
             <!-- Mobile Menu -->
             <div id="mobile-menu"
                 class="hidden absolute top-20 left-0 w-full bg-blue-400 text-white text-center py-4 md:hidden">
-                <a href="index.html" class="block py-2 text-stone-100">Home</a>
-                <a href="/pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
-                <a href="/pages/rates.html" class="block py-2 text-stone-100">Rates</a>
+                <a href="index.html" class="block py-2">Home</a>
+                <a href="/pages/booking.html" class="block py-2">Routes & Schedules</a>
+                <a href="/pages/rates.html" class="block py-2">Rates</a>
             </div>
         </nav>
 
+        <!-- Hero Section -->
         <div class="relative w-full h-screen">
             <div class="bg-black opacity-30 absolute inset-0"></div>
             <video autoplay muted loop class="w-full h-full object-cover">
@@ -60,47 +57,54 @@
                 <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Explore the Philippines</p>
                 <a class="text-lg mt-2 drop-shadow-lg">Speed, Quality, and Reliability</a>
                 <a href="/pages/login.html"
-                    class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">Login
-                    and Book Now</a>
+                    class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">
+                    Login and Book Now
+                </a>
             </div>
         </div>
 
+        <!-- Routes Section -->
         <section class="w-full py-20 px-6 sm:px-20 bg-white text-center">
             <h2 class="text-2xl sm:text-3xl font-bold text-black">Our Offered Routes!</h2>
             <p class="text-black text-lg sm:text-xl mt-6">
                 Ready to take on a new adventure? Browse our offered routes!
             </p>
-            <!-- <button class="mt-6 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition">Learn More</a> -->
-            <a href="/pages/booking.html"><button
-                    class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition">Browse
-                    Routes</button></a>
+            <a href="/pages/booking.html">
+                <button class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
+                    Browse Routes
+                </button>
+            </a>
         </section>
 
+        <!-- Vision & Mission -->
         <section class="w-full py-20 px-6 sm:px-20 bg-orange-500 text-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-black">Vision and Mission</h2>
-            <p class="text-black text-lg sm:text-xl mt-6">
+            <h2 class="text-2xl sm:text-3xl font-bold text-white">Vision and Mission</h2>
+            <p class="text-white text-lg sm:text-xl mt-6">
                 To be the leading provider of safe, reliable, and comfortable transportation for everyone.
                 Setting the standard for excellence in travel across the Philippines.
             </p>
-            <p class="text-black text-lg sm:text-xl mt-4">
+            <p class="text-white text-lg sm:text-xl mt-4">
                 Our mission is to ensure the safety and peace of mind of our passengers with Montecillo Roro services.
                 We maintain high safety standards for everyone on board.
             </p>
         </section>
 
+        <!-- About Us -->
         <section class="w-full py-20 px-6 sm:px-20 bg-white text-center">
             <h2 class="text-2xl sm:text-3xl font-bold text-black">About Us</h2>
             <p class="text-black text-lg sm:text-xl mt-6">
-                Capt. Mangji Hasa Montecillo founded Montecillo Roro
-                in 1985. <br> Captain Montecillo was a talented Filipino mariner who dreamed of enhancing inter-island
+                Capt. Mangji Hasa Montecillo founded Montecillo Roro in 1985. <br>
+                Captain Montecillo was a talented Filipino mariner who dreamed of enhancing inter-island
                 transport within the Philippines.
             </p>
-            <!-- <button class="mt-6 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition">Learn More</a> -->
-            <a href="/pages/about.html"><button
-                    class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm text-stone-100 sm:text-base rounded-lg transition">More
-                    About Us</button></a>
+            <a href="/pages/about.html">
+                <button class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
+                    More About Us
+                </button>
+            </a>
         </section>
 
+        <!-- Footer -->
         <footer class="w-full bg-gray-900 py-10 text-center text-white">
             &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
         </footer>
