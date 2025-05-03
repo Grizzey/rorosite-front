@@ -38,7 +38,7 @@ const initializeFirebase = async () => {
             getUserData(user.uid);
             loadUserData(user.uid); //LOAD
         } else {
-            console.log("[ getUsers | Fail ] No user is logged in. Now Redirecting");
+            console.warn("[ getUsers | Fail ] No user is logged in");
             // window.location.href = "login.html";
         }
     });
@@ -54,12 +54,13 @@ const getUserData = async (userId) => {
     const userSnap = await getDoc(userRef);
 
     if (userSnap.exists()) {
-        console.log("[ getUsers | Success ] User data Found");
+        //SNAP EXIST
     } else {
-        console.log("[ getUsers | Fail ] No user data Found");
+        console.warn("[ getUsers | Fail ] No user data Found");
         window.location.href = "login.html";
     }
 };
+
 
 export async function loadUserData(uid) {
     console.log("Fetching tickets for user ID:", uid); //DEBUG
@@ -70,14 +71,16 @@ export async function loadUserData(uid) {
     try {
         const userDoc = await getDoc(doc(db, "users", uid));
         if (userDoc.exists()) {
-            userNameElement.textContent = userDoc.data().name;
+            let newFullname = userDoc.data().fullname.replace(" ", ", ")
+            userNameElement.textContent = newFullname;
+
             userEmailElement.textContent = userDoc.data().email;
         } else {
             console.warn("User document does not exist.");
             return;
         }
 
-        const ticketsSnapshot = await getDocs(collection(db, "users", uid, "testTickets"));
+        const ticketsSnapshot = await getDocs(collection(db, "users", uid, "tickets"));
         ticketContainer.innerHTML = ""; // Clear previous tickets
 
         ticketsSnapshot.forEach((ticketDoc) => {
@@ -113,7 +116,7 @@ export async function loadUserData(uid) {
         </div>
         <hr class="my-4 border-gray-300">
         <div class="flex justify-center">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketDoc.id}" 
+            <img nouserselect src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketDoc.id}" 
                 alt="QR Code" class="w-32 h-32">
         </div>
         <p class="text-center text-xs text-gray-500 mt-3">Scan the QR code at the boarding gate</p>

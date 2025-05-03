@@ -7,12 +7,15 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <title>Montecillo Roro | Booking</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
-    <script src="../script.js" type="module"></script>
-    <script src="../getUser.js" type="module"></script>
+    <script src="../scripts/main.js" type="module"></script>
+    <script src="../scripts/getUser.js" type="module"></script>
+    <script src="../scripts/loginHandler.js" type="module"></script>
+    <script src="../scripts/checkUserToDashboard.js" type="module"></script>
 </head>
 
 <body class="h-full scroll-smooth">
-    <div id="loader" class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
+    <div id="loader"
+        class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
@@ -62,23 +65,50 @@
 
         <!-- MAIN CONTENTS HERE PLS -->
 
-        <section
-            class="flex flex-row sm:flex-col gap-10 w-screen mx-auto p-5 bg-white py-30 pt-10 shadow-lg rounded-lg justify-center items-center">
-            <div class="p-5 bg-stone-300 rounded-lg shadow w-full sm:w-auto text-center">
-                <p class="text-3xl sm:text-2xl font-bold drop-shadow-lg">User Information</p>
-                <p class="text-gray-700 mt-2">Name: <span id="userName"></span></p>
-                <p class="text-gray-700">Email: <span id="userEmail"></span></p>
+        <section class="min-h-screen bg-cover bg-center py-16 px-4" id="profile-pic">
+
+            <!-- User Info Full Width -->
+            <div class="w-full px-4 mb-10">
+
+                <div
+                    class="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 flex items-center gap-6">
+
+                    <!-- Avatar or Icon Placeholder -->
+                    <div id="placeholder-pfp"
+                        class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-2xl font-bold">
+                        ID
+                    </div>
+
+                    <!-- User Details -->
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">User ID Card</h2>
+                        <p class="text-gray-700 text-base"><span class="font-medium">Name:</span> <span
+                                id="userName"></span></p>
+                        <p class="text-gray-700 text-base"><span class="font-medium">Email:</span> <span
+                                id="userEmail"></span></p>
+                    </div>
+                </div>
+
+                <!-- Optional Logout Button -->
+                <div class="max-w-2xl mx-auto mt-4 text-right">
+                    <button onclick="logoutUser()"
+                        class="px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
+                        Logout
+                    </button>
+                </div>
+
             </div>
 
-            <div class="p-5 bg-stone-300 rounded-lg shadow w-full sm:w-auto text-center">
-                <p class="text-3xl sm:text-2xl font-bold drop-shadow-lg">Tickets</p>
-                <ul id="ticketList" class="mt-3 space-y-2">
-                    <!--TICKET TEMPS GO HERE-->
-                </ul>
 
+
+            <!-- Tickets Section Full Width -->
+            <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 mt-10 text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tickets</h2>
+                <ul id="ticketList" class="mt-4 space-y-4 text-left">
+                    <!-- Ticket items will be injected here -->
+                </ul>
             </div>
         </section>
-
 
         <footer class="w-full bg-gray-900 py-10 text-center text-white">
             &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech

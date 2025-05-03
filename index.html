@@ -5,13 +5,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <!--DATE PICKER-->
     <title>Montecillo Roro | Home</title>
     <link rel="icon" type="image/png" href="./assets/roro_transparent.png">
-    <script src="./script.js" type="module"></script>
+    <script src="./scripts/main.js" type="module"></script>
+    <script src="./scripts/manageButton.js" type="module"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const book = document.getElementById("book");
+            const manage = document.getElementById("manage");
+
+            book.classList.add("border-b-2", "border-blue-500");
+
+            const today = new Date();
+
+            const startInput = document.getElementById('datepicker-range-start');
+            const endInput = document.getElementById('datepicker-range-end');
+
+            const startPicker = new Datepicker(startInput, {
+                format: 'yyyy-mm-dd',
+                minDate: today,
+                autohide: true
+            });
+
+            const endPicker = new Datepicker(endInput, {
+                format: 'yyyy-mm-dd',
+                minDate: today,
+                autohide: true
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!startInput.contains(e.target)) {
+                    startPicker.hide();
+                }
+                if (!endInput.contains(e.target)) {
+                    endPicker.hide();
+                }
+            });
+
+
+            book.addEventListener('click', function (e) {
+                book.classList.add("border-b-2", "border-blue-500");
+                manage.classList.remove("border-b-2", "border-blue-500");
+            });
+
+            manage.addEventListener('click', function (e) {
+                manage.classList.add("border-b-2", "border-blue-500");
+                book.classList.remove("border-b-2", "border-blue-500");
+            });
+        });
+    </script>
 </head>
 
 <body class="h-full scroll-smooth">
-    <div id="loader" class="fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
+    <div id="loader"
+        class="fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
 
@@ -26,7 +77,8 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6 text-lg">
                 <a href="index.html" class="nav-link text-white hover:text-neutral-300 transition">Home</a>
-                <a href="/pages/booking.html" class="nav-link text-white hover:text-neutral-300 transition">Routes & Schedules</a>
+                <a href="/pages/booking.html" class="nav-link text-white hover:text-neutral-300 transition">Routes &
+                    Schedules</a>
                 <a href="/pages/rates.html" class="nav-link text-white hover:text-neutral-300 transition">Rates</a>
             </div>
 
@@ -34,7 +86,8 @@
             <button id="menu-button" class="md:hidden text-black focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
                 </svg>
             </button>
 
@@ -53,13 +106,113 @@
             <video autoplay muted loop class="w-full h-full object-cover">
                 <source src="./assets/front_vid_no_logo.mp4" type="video/mp4" />
             </video>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center gap-5">
                 <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Explore the Philippines</p>
                 <a class="text-lg mt-2 drop-shadow-lg">Speed, Quality, and Reliability</a>
-                <a href="/pages/login.html"
-                    class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">
+                <!-- <a href="/pages/login.html"
+                    class="mt-4 bg-blue-600 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base rounded-lg transition">
                     Login and Book Now
-                </a>
+                </a> -->
+
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+                    <div class="flex space-x-6 border-b pb-2 mb-4">
+                        <button id="book" class="text-gray-500 cursor-pointer">Book a flight</button>
+                        <button id="manage" class="text-gray-500 cursor-pointer">Manage booking</button>
+                        <!-- <button class="text-gray-500">Check-in</button> -->
+                    </div>
+
+                    <div class="mb-4 flex space-x-10 justify-center">
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="trip" checked class="text-blue-500 cursor-pointer">
+                            <span class="text-black">Round trip</span>
+                        </label>
+                        <label class="flex items-center space-x-2">
+                            <input type="radio" name="trip" class="text-blue-500 cursor-pointer">
+                            <span class="text-black">One way</span>
+                        </label>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <!-- DEPARTURE -->
+                        <div class="relative">
+                            <label class="block text-gray-700">Departure</label>
+                            <input id="dropdownDefaultButton" data-dropdown-toggle="Departuredropdown"
+                                   class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Batangas" type="text" readonly />
+                          
+                            <!-- Dropdown menu -->
+                            <div id="Departuredropdown"
+                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a></li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a></li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a></li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a></li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a></li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                          
+                          <!-- DESTINATION -->
+                          <div class="relative">
+                            <label class="block text-gray-700">Destination</label>
+                            <input id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
+                                   class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Caticlan" type="text" readonly />
+                          
+                            <!-- Dropdown menu -->
+                            <div id="Destinationdropdown"
+                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDestinationButton">
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a></li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a></li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a></li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a></li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a></li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="grid gap-4 mb-4 justify-center">
+                        <div>
+                            <label class="block text-gray-700">Date</label>
+
+                            <!-- DATE PICKER -->
+                            <div id="date-range-picker" date-rangepicker class="flex items-center">
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                        </svg>
+                                    </div>
+                                    <input id="datepicker-range-start" name="start" type="date" readonly
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select date start">
+                                </div>
+                                <span class="mx-4 text-gray-500">to</span>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path
+                                                d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                        </svg>
+                                    </div>
+                                    <input id="datepicker-range-end" name="end" type="date" readonly
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select date end">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" onclick="">Search
+                        destination</button>
+                </div>
             </div>
         </div>
 
@@ -70,7 +223,8 @@
                 Ready to take on a new adventure? Browse our offered routes!
             </p>
             <a href="/pages/booking.html">
-                <button class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
+                <button
+                    class="mt-4 bg-blue-600 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
                     Browse Routes
                 </button>
             </a>
@@ -98,7 +252,8 @@
                 transport within the Philippines.
             </p>
             <a href="/pages/about.html">
-                <button class="mt-4 bg-blue-700 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
+                <button
+                    class="mt-4 bg-blue-600 hover:bg-blue-800 px-5 py-2 text-sm sm:text-base text-white rounded-lg transition">
                     More About Us
                 </button>
             </a>

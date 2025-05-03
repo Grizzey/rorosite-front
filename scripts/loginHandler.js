@@ -3,7 +3,8 @@ import {
     getAuth, 
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword, 
-    onAuthStateChanged 
+    onAuthStateChanged,
+    signOut
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 import { 
@@ -91,7 +92,6 @@ export const registerUser = async (email, password, firstname, lastname) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // 1️⃣ Save user data in Firestore
         await setDoc(doc(db, "users", user.uid), {
             firstname: firstname,
             lastname: lastname,
@@ -101,16 +101,6 @@ export const registerUser = async (email, password, firstname, lastname) => {
         });
 
         console.log("[ Handler | Success ] User registered successfully:", user);
-
-        // 2️⃣ Add default ticket (optional)
-        const ticketsRef = collection(db, "users", user.uid, "tickets"); 
-        await addDoc(ticketsRef, {
-            title: "Welcome Ticket",
-            status: "Pending",
-            issuedAt: new Date().toISOString(),
-        });
-
-        console.log("[ Handler | Success ] Default ticket created for", user.uid);
 
     } catch (error) {
         console.error("[ Handler | Fail ] Registration error:", error.message);
@@ -125,7 +115,10 @@ export const logoutUser = async () => {
         window.location.href = "login.html";
     } catch (error) {
         alert("Error logging out!");
+        console.warn(error)
     }
 };
 
 initializeFirebase();
+
+window.logoutUser = logoutUser;
