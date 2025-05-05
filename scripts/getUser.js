@@ -13,6 +13,10 @@ import {
     getDocs
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
+import {
+    downloadTicketImage
+} from "./downloadTicket.js"
+
 let auth, db;
 
 const getFirebaseConfig = async () => {
@@ -86,41 +90,53 @@ export async function loadUserData(uid) {
         ticketsSnapshot.forEach((ticketDoc) => {
             const ticketData = ticketDoc.data();
             const ticketHTML = `
-                <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 w-full max-w-md">
-        <div class="text-center">
-            <h1 class="text-2xl font-bold text-gray-800">Montecillo Roro e-Ticket</h1>
-            <p class="text-sm text-gray-500">Valid for one-time use only</p>
-        </div>
-        <hr class="my-4 border-gray-300">
-        <div class="mb-4">
-            <p class="text-lg font-semibold">Passenger: <span class="text-gray-700">${userDoc.data().name}</span></p>
-            <p class="text-sm text-gray-600">Ticket ID: <span>${ticketDoc.id}</span></p>
-        </div>
-        <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
-            <div>
-                <p class="font-medium text-gray-700">Departure</p>
-                <p class="text-gray-900 font-semibold">${ticketData.departure || "TBA"}</p>
-            </div>
-            <div>
-                <p class="font-medium text-gray-700">Seat</p>
-                <p class="text-gray-900 font-semibold">${ticketData.seat || "Unassigned"}</p>
-            </div>
-            <div>
-                <p class="font-medium text-gray-700">Route</p>
-                <p class="text-gray-900 font-semibold">${ticketData.route || "N/A"}</p>
-            </div>
-            <div>
-                <p class="font-medium text-gray-700">Price</p>
-                <p class="text-gray-900 font-semibold">₱${ticketData.price || "1"}</p>
-            </div>
-        </div>
-        <hr class="my-4 border-gray-300">
-        <div class="flex justify-center">
-            <img nouserselect src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketDoc.id}" 
-                alt="QR Code" class="w-32 h-32">
-        </div>
-        <p class="text-center text-xs text-gray-500 mt-3">Scan the QR code at the boarding gate</p>
+                <div id="ticket-${ticketData.id}" class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 w-full max-w-md">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold text-gray-800">Montecillo Roro e-Ticket</h1>
+        <p class="text-sm text-gray-500">Valid for one-time use only</p>
+        <span class="inline-block mt-2 px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full">
+            UNPAID
+        </span>
     </div>
+    <hr class="my-4 border-gray-300">
+    <div class="mb-4">
+        <p class="text-lg font-semibold">Passenger: <span class="text-gray-700">${userDoc.data().fullname}</span></p>
+        <p class="text-sm text-gray-600">Ticket ID: <span>${ticketDoc.id}</span></p>
+        <p class="text-sm text-gray-600">UUID: <span>${ticketData.id}</span></p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 text-sm text-gray-600">
+        <div>
+            <p class="font-medium text-gray-700">Departure</p>
+            <p class="text-gray-900 font-semibold">${ticketData.departure || "TBA"}</p>
+        </div>
+        <div>
+            <p class="font-medium text-gray-700">Seat</p>
+            <p class="text-gray-900 font-semibold">${ticketData.seat || "Unassigned"}</p>
+        </div>
+        <div>
+            <p class="font-medium text-gray-700">Route</p>
+            <p class="text-gray-900 font-semibold">${ticketData.destination || "N/A"}</p>
+        </div>
+        <div>
+            <p class="font-medium text-gray-700">Price</p>
+            <p class="text-gray-900 font-semibold">₱${ticketData.price || "1"}</p>
+        </div>
+    </div>
+    <hr class="my-4 border-gray-300">
+    <div class="flex justify-center">
+        <img nouserselect src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketDoc.id}" 
+            alt="QR Code" class="w-32 h-32">
+    </div>
+    <p class="text-center text-xs text-gray-500 mt-3">Scan the QR code at the boarding gate</p>
+<div class="mt-4 text-center">
+    <button onclick="downloadTicketImage('${ticketData.id}')"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow">
+    Download Ticket
+</button>
+</div>
+    </div>
+
+
             `;
             // Append the ticket to the container
             ticketContainer.innerHTML += ticketHTML;

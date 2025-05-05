@@ -64,7 +64,6 @@ export const loginUser = async (email, password) => {
                 email: user.email,
                 lastLogin: new Date().toISOString(),
             }, { merge: true });
-
             
             console.log("[ Handler | Success ] User data saved in Firestore!");
 
@@ -80,7 +79,7 @@ export const loginUser = async (email, password) => {
 };
 
 export const registerUser = async (email, password, firstname, lastname) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(email)) {
         console.error("[ Handler | Fail ] Invalid email format.");

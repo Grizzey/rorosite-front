@@ -4,16 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com/3.2.7"></script>
+
     <title>Montecillo Roro | Booking</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
     <script src="../scripts/main.js" type="module"></script>
     <script src="../scripts/getUser.js" type="module"></script>
     <script src="../scripts/loginHandler.js" type="module"></script>
     <script src="../scripts/checkUserToDashboard.js" type="module"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<body class="h-full scroll-smooth">
+<body class="h-full scroll-smooth" onload="loginCheck()">
     <div id="loader"
         class="z-100 fixed inset-0 bg-white flex items-center justify-center z-50 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
