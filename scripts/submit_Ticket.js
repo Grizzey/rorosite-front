@@ -35,10 +35,9 @@ const initializeFirebase = async () => {
 };
 
 async function submitTicket(event) {
-    alert("Submit Ticket Clicked");
-    event.preventDefault(); // Prevent form from submitting
+    event.preventDefault();
 
-    // Ensure Firebase is initialized only once
+
     if (!auth || !db) {
         const firebaseConfig = await getFirebaseConfig();
         const app = initializeApp(firebaseConfig);
@@ -46,7 +45,6 @@ async function submitTicket(event) {
         db = getFirestore(app);
     }
 
-    // Wait for current user
     const user = auth.currentUser;
 
 

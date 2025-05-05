@@ -8,9 +8,6 @@ import {
 } from "./getUser.js";
 
 async function submitLogin() {
-
-    alert("REQUEST LOGIN")
-
     let emailField = document.getElementById("EmailField");
     let passwordField = document.getElementById("PasswordField");
     let errorMessage = document.getElementById("error-message");

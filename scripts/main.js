@@ -1,3 +1,5 @@
+import "https://cdn.jsdelivr.net/npm/flatpickr";
+
 document.addEventListener("DOMContentLoaded", function () {
     // Navbar scroll behavior
     const navbar = document.getElementById("navbar");
@@ -57,18 +59,15 @@ document.addEventListener("DOMContentLoaded", function () {
         manage.addEventListener('click', () => activateTab(manage, book));
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        flatpickr("#datepicker-range-start", {
-            dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
-            minDate: "today",    // Disable past dates
-        });
-        
-        flatpickr("#datepicker-range-end", {
-            dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
-            minDate: "today",    // Disable past dates
-        });
+    flatpickr("#datepicker-range-start", {
+        dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
+        minDate: "today", // Disable past dates
     });
-    
+
+    flatpickr("#datepicker-range-end", {
+        dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
+        minDate: "today", // Disable past dates
+    });
 });
 
 // Spinner control
