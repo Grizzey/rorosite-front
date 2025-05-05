@@ -92,7 +92,10 @@ export async function loadUserData(uid) {
             const ticketHTML = `
                 <div id="ticket-${ticketData.id}" class="bg-white p-6 rounded-lg shadow-lg border border-gray-300 w-full max-w-md">
     <div class="text-center">
-        <h1 class="text-2xl font-bold text-gray-800">Montecillo Roro e-Ticket</h1>
+        <div class="text-center">
+  <img src="../assets/roro_transparent.png" alt="Montecillo Roro Logo" class="w-20 h-20 mx-auto" />
+  <h1 class="text-2xl font-bold text-gray-800 mt-2">Montecillo Roro e-Ticket</h1>
+</div>
         <p class="text-sm text-gray-500">Valid for one-time use only</p>
         <span class="inline-block mt-2 px-3 py-1 text-sm font-semibold text-red-700 bg-red-100 rounded-full">
             UNPAID

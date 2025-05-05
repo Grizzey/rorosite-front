@@ -77,27 +77,38 @@
                     class="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 flex items-center gap-6">
 
                     <!-- Avatar or Icon Placeholder -->
-                    <div id="placeholder-pfp"
-                        class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-2xl font-bold">
-                        ID
-                    </div>
+
 
                     <!-- User Details -->
                     <div>
+
                         <h2 class="text-xl font-semibold text-gray-800 mb-2">User ID Card</h2>
-                        <p class="text-gray-700 text-base"><span class="font-medium">Name:</span> <span
-                                id="userName"></span></p>
-                        <p class="text-gray-700 text-base"><span class="font-medium">Email:</span> <span
-                                id="userEmail"></span></p>
+
+                        <div class="flex flex-row pt-5">
+                            <div id="placeholder-pfp"
+                                class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-2xl font-bold">
+                                ID
+                            </div>
+
+                            <div class="ml-5">
+                                <p class="text-gray-700 text-base"><span class="font-medium">Name:</span> <span
+                                    id="userName"></span></p>
+                            <p class="text-gray-700 text-base"><span class="font-medium">Email:</span> <span
+                                    id="userEmail"></span></p>
+                            </div>
+                           
+                        </div>
+                        <button onclick="logoutUser()"
+                            class="mt-20 px-10 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
+                            Logout
+                        </button>
                     </div>
                 </div>
 
                 <!-- Optional Logout Button -->
-                <div class="max-w-2xl mx-auto mt-4 text-right">
-                    <button onclick="logoutUser()"
-                        class="px-4 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
-                        Logout
-                    </button>
+                <div class="max-w-2xl mx-auto mt-4 text-center">
+
+
                 </div>
 
             </div>
@@ -105,11 +116,16 @@
 
 
             <!-- Tickets Section Full Width -->
-            <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 mt-10 text-center">
+            <div class="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 mt-10 text-center">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Tickets</h2>
-                <ul id="ticketList" class="mt-4 space-y-4 text-left">
-                    <!-- Ticket items will be injected here -->
-                </ul>
+                <button onclick="window.location.href='/pages/book.html'" class="px-10 mx-20 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition duration-200">
+                    Book New
+                </button>
+
+                <!-- Ticket List -->
+                <div id="ticketList" class="mt-8 flex flex-wrap justify-center gap-6">
+                    <!-- JS will inject tickets here -->
+                </div>
             </div>
         </section>
 

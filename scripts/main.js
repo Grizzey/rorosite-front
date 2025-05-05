@@ -66,3 +66,75 @@ document.querySelectorAll('.destination-option').forEach(option => {
         document.getElementById('dropdownDestinationButton').value = option.textContent;
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const book = document.getElementById("book");
+    const manage = document.getElementById("manage");
+
+    // Default tab highlight
+    book.classList.add("border-b-2", "border-blue-500");
+
+    const today = new Date();
+    const startInput = document.getElementById('datepicker-range-start');
+    const endInput = document.getElementById('datepicker-range-end');
+
+    let startPicker, endPicker;
+
+    // Initialize start date picker
+    if (startInput) {
+        startPicker = new Datepicker(startInput, {
+            format: 'yyyy-mm-dd',
+            minDate: today,
+            autohide: true
+        });
+
+        // When a start date is selected, update end date picker's minDate
+        startInput.addEventListener('change', function (e) {
+            const selectedStartDate = new Date(e.target.value);
+            if (endPicker) {
+                endPicker.setOptions({
+                    minDate: selectedStartDate
+                });
+
+                if (endInput.value && new Date(endInput.value) < selectedStartDate) {
+                    endInput.value = '';
+                }
+            }
+        });
+
+    }
+
+    // Initialize end date picker
+    if (endInput) {
+        endPicker = new Datepicker(endInput, {
+            format: 'yyyy-mm-dd',
+            minDate: today,
+            autohide: true
+        });
+    }
+
+    // Hide pickers when clicking outside
+    document.addEventListener('click', function (e) {
+        if (startPicker && !startInput.contains(e.target)) {
+            startPicker.hide();
+        }
+        if (endPicker && !endInput.contains(e.target)) {
+            endPicker.hide();
+        }
+    });
+
+    // Tab switching
+    function activateTab(active, inactive) {
+        active.classList.add("border-b-2", "border-blue-500");
+        inactive.classList.remove("border-b-2", "border-blue-500");
+    }
+
+    book.addEventListener('click', function () {
+        activateTab(book, manage);
+    });
+
+    manage.addEventListener('click', function () {
+        activateTab(manage, book);
+    });
+});
