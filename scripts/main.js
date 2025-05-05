@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (startInput) {
         startPicker = new Datepicker(startInput, {
-            format: 'yyyy-mm-dd',
+            format: 'yyyy-MM-dd',
             minDate: today,
             autohide: true
         });
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (endInput) {
         endPicker = new Datepicker(endInput, {
-            format: 'yyyy-mm-dd',
+            format: 'yyyy-MM-dd',
             minDate: today,
             autohide: true
         });
