@@ -10,6 +10,7 @@
     <title>Montecillo Roro | Home</title>
     <link rel="icon" type="image/png" href="./assets/roro_transparent.png">
     <script src="./scripts/main.js" type="module"></script>
+    <script src="./scripts/submit_Ticket.js" type="module"></script>
     <script src="./scripts/manageButton.js" type="module"></script>
 
 
@@ -18,46 +19,75 @@
             const book = document.getElementById("book");
             const manage = document.getElementById("manage");
 
+            // Default tab highlight
             book.classList.add("border-b-2", "border-blue-500");
 
             const today = new Date();
-
             const startInput = document.getElementById('datepicker-range-start');
             const endInput = document.getElementById('datepicker-range-end');
 
-            const startPicker = new Datepicker(startInput, {
-                format: 'yyyy-mm-dd',
-                minDate: today,
-                autohide: true
-            });
+            let startPicker, endPicker;
 
-            const endPicker = new Datepicker(endInput, {
-                format: 'yyyy-mm-dd',
-                minDate: today,
-                autohide: true
-            });
+            // Initialize start date picker
+            if (startInput) {
+                startPicker = new Datepicker(startInput, {
+                    format: 'yyyy-mm-dd',
+                    minDate: today,
+                    autohide: true
+                });
 
+                // When a start date is selected, update end date picker's minDate
+                startInput.addEventListener('change', function (e) {
+                    const selectedStartDate = new Date(e.target.value);
+                    if (endPicker) {
+                        endPicker.setOptions({
+                            minDate: selectedStartDate
+                        });
+
+                        if (endInput.value && new Date(endInput.value) < selectedStartDate) {
+                            endInput.value = '';
+                        }
+                    }
+                });
+
+            }
+
+            // Initialize end date picker
+            if (endInput) {
+                endPicker = new Datepicker(endInput, {
+                    format: 'yyyy-mm-dd',
+                    minDate: today,
+                    autohide: true
+                });
+            }
+
+            // Hide pickers when clicking outside
             document.addEventListener('click', function (e) {
-                if (!startInput.contains(e.target)) {
+                if (startPicker && !startInput.contains(e.target)) {
                     startPicker.hide();
                 }
-                if (!endInput.contains(e.target)) {
+                if (endPicker && !endInput.contains(e.target)) {
                     endPicker.hide();
                 }
             });
 
+            // Tab switching
+            function activateTab(active, inactive) {
+                active.classList.add("border-b-2", "border-blue-500");
+                inactive.classList.remove("border-b-2", "border-blue-500");
+            }
 
-            book.addEventListener('click', function (e) {
-                book.classList.add("border-b-2", "border-blue-500");
-                manage.classList.remove("border-b-2", "border-blue-500");
+            book.addEventListener('click', function () {
+                activateTab(book, manage);
             });
 
-            manage.addEventListener('click', function (e) {
-                manage.classList.add("border-b-2", "border-blue-500");
-                book.classList.remove("border-b-2", "border-blue-500");
+            manage.addEventListener('click', function () {
+                activateTab(manage, book);
             });
         });
     </script>
+
+
 </head>
 
 <body class="h-full scroll-smooth">
@@ -106,7 +136,7 @@
             <video autoplay muted loop class="w-full h-full object-cover">
                 <source src="./assets/front_vid_no_logo.mp4" type="video/mp4" />
             </video>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center gap-5">
+            <form class="absolute inset-0 flex flex-col items-center justify-center text-white text-center gap-5">
                 <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Explore the Philippines</p>
                 <a class="text-lg mt-2 drop-shadow-lg">Speed, Quality, and Reliability</a>
                 <!-- <a href="/pages/login.html"
@@ -137,41 +167,69 @@
                         <div class="relative">
                             <label class="block text-gray-700">Departure</label>
                             <input id="dropdownDefaultButton" data-dropdown-toggle="Departuredropdown"
-                                   class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Batangas" type="text" readonly />
-                          
+                                class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Batangas"
+                                type="text" readonly />
+
                             <!-- Dropdown menu -->
                             <div id="Departuredropdown"
-                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a></li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a></li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a></li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a></li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a></li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a></li>
-                              </ul>
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownDefaultButton">
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a>
+                                    </li>
+                                </ul>
                             </div>
-                          </div>
-                          
-                          <!-- DESTINATION -->
-                          <div class="relative">
+                        </div>
+
+                        <!-- DESTINATION -->
+                        <div class="relative">
                             <label class="block text-gray-700">Destination</label>
                             <input id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
-                                   class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Caticlan" type="text" readonly />
-                          
+                                class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Caticlan"
+                                type="text" readonly />
+
                             <!-- Dropdown menu -->
                             <div id="Destinationdropdown"
-                                 class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDestinationButton">
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a></li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a></li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a></li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a></li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a></li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a></li>
-                              </ul>
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                    aria-labelledby="dropdownDestinationButton">
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a>
+                                    </li>
+                                    <li><a href="#"
+                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a>
+                                    </li>
+                                </ul>
                             </div>
-                          </div>
+                        </div>
                     </div>
 
                     <div class="grid gap-4 mb-4 justify-center">
@@ -210,10 +268,11 @@
                         </div>
                     </div>
 
-                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" onclick="">Search
+                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" type="submit"
+                        onclick="submitTicket(event)">Search
                         destination</button>
                 </div>
-            </div>
+            </form>
         </div>
 
         <!-- Routes Section -->
