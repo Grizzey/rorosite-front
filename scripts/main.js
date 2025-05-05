@@ -57,43 +57,18 @@ document.addEventListener("DOMContentLoaded", function () {
         manage.addEventListener('click', () => activateTab(manage, book));
     }
 
-    // Datepicker setup
-    const today = new Date();
-    const startInput = document.getElementById('datepicker-range-start');
-    const endInput = document.getElementById('datepicker-range-end');
-    let startPicker, endPicker;
-
-    if (startInput) {
-        startPicker = new Datepicker(startInput, {
-            format: 'yyyy-MM-dd',
-            minDate: today,
-            autohide: true
+    document.addEventListener('DOMContentLoaded', function () {
+        flatpickr("#datepicker-range-start", {
+            dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
+            minDate: "today",    // Disable past dates
         });
-
-        startInput.addEventListener('change', function (e) {
-            const selectedStart = new Date(e.target.value);
-            if (endPicker) {
-                endPicker.setOptions({ minDate: selectedStart });
-                if (endInput.value && new Date(endInput.value) < selectedStart) {
-                    endInput.value = '';
-                }
-            }
+        
+        flatpickr("#datepicker-range-end", {
+            dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
+            minDate: "today",    // Disable past dates
         });
-    }
-
-    if (endInput) {
-        endPicker = new Datepicker(endInput, {
-            format: 'yyyy-MM-dd',
-            minDate: today,
-            autohide: true
-        });
-    }
-
-    // Hide pickers when clicking outside
-    document.addEventListener('click', function (e) {
-        if (startPicker && !startInput.contains(e.target)) startPicker.hide();
-        if (endPicker && !endInput.contains(e.target)) endPicker.hide();
     });
+    
 });
 
 // Spinner control
