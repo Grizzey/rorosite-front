@@ -9,8 +9,6 @@ export async function downloadTicketImage(ticketId) {
     }
 
     try {
-        console.log(ticketElement);
-        // Adjust canvas capture settings for better rendering
         const canvas = await html2canvas(ticketElement, {
             useCORS: true,
             scrollX: 0,
@@ -19,28 +17,30 @@ export async function downloadTicketImage(ticketId) {
             height: ticketElement.offsetHeight,
             logging: true,
             backgroundColor: null,
-        }).then(canvas => {
-            console.log("Generated ticket", canvas);
-            const dataURL = canvas.toDataURL("image/png");
-            if (window.Android && window.Android.saveImage) {
-                window.Android.saveImage(dataURL);
-            } else {
-                console.error("Android interface not available.");
-            }
         });
 
-        // Convert canvas to image data URL
+        if (!canvas || typeof canvas.toDataURL !== 'function') {
+            console.error("Canvas generation failed or returned undefined.");
+            return;
+        }
+
         const image = canvas.toDataURL("image/png");
 
-        // Create a link element to trigger the download
-        const link = document.createElement("a");
-        link.href = image;
-        link.download = `ticket-${ticketId}.png`; // Name the file with ticketId
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    } catch (error) {
-        console.error("Error capturing the ticket image:", error);
+        // For Android native saving
+        if (window.Android && window.Android.saveImage) {
+            window.Android.saveImage(image);
+        } else {
+            // Fallback: download via browser
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = `ticket-${ticketId}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+    } catch (err) {
+        console.error("Error capturing the ticket image:", err);
     }
 }
 
