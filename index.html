@@ -18,6 +18,15 @@
     <script src="./scripts/manageButton.js" type="module"></script>
     <script src="./scripts/userCheck.js" type="module"></script>
 
+    <script>
+        // Detect if in a WebView
+        const isWebView = /(wv|WebView|(Android(?!.*Chrome)))/i.test(navigator.userAgent);
+        if (isWebView) {
+          document.getElementById("header").classList.add("pt-10");
+        }
+    </script>
+      
+
 </head>
 
 <body class="h-full scroll-smooth">
@@ -29,7 +38,7 @@
     <div id="content">
         <!-- Navbar -->
         <nav id="navbar"
-            class="fixed w-full h-20 pt-20 sm:pt-0 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
+            class="fixed w-full h-20 pt-0 sm:pt-0 px-4 sm:px-10 flex items-center justify-between z-50 transition-all duration-300 bg-transparent">
             <a href="index.html" class="text-lg font-bold flex items-center">
                 <img src="./assets/roro_transparent.png" class="w-12 h-12" alt="Logo" />
             </a>
