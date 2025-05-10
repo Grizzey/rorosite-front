@@ -40,6 +40,8 @@
                 <a href="/pages/booking.html" class="nav-link text-white hover:text-neutral-300 transition">Routes &
                     Schedules</a>
                 <a href="/pages/rates.html" class="nav-link text-white hover:text-neutral-300 transition">Rates</a>
+                <a href="/pages/login.html" class="bg-blue-600 px-5 rounded-lg nav-link text-white hover:text-neutral-300 transition">Login</a>
+
             </div>
 
             <!-- Mobile Menu Button -->
@@ -57,6 +59,8 @@
                 <a href="index.html" class="block py-2">Home</a>
                 <a href="/pages/booking.html" class="block py-2">Routes & Schedules</a>
                 <a href="/pages/rates.html" class="block py-2">Rates</a>
+                <a href="/pages/login.html" class="block py-2">Login</a>
+
             </div>
         </nav>
 
@@ -66,7 +70,7 @@
             <video autoplay muted loop class="w-full h-full object-cover">
                 <source src="./assets/front_vid_no_logo.mp4" type="video/mp4" />
             </video>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center gap-5">
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center gap-5 p-5">
                 <p class="text-3xl sm:text-7xl font-bold drop-shadow-lg">Explore the Philippines</p>
                 <a class="text-lg mt-2 drop-shadow-lg">Speed, Quality, and Reliability</a>
                 <!-- <a href="/pages/login.html"
@@ -162,49 +166,48 @@
                         </div>
                     </div>
 
-                    <div class="grid gap-4 mb-4 justify-center">
+                    <div class="grid gap-4 mb-4">
                         <div>
-                            <label class="block text-gray-700">Date</label>
-
-                            <!-- DATE PICKER -->
-                            <div class="grid gap-4 mb-4 justify-center">
-                                <div>
-                                    <!-- Custom DATE RANGE PICKER -->
-                                    <div class="flex items-center">
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input id="datepicker-range-start" name="start" type="date"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Select date start">
-                                        </div>
-                                        <span class="mx-4 text-gray-500">to</span>
-                                        <div class="relative">
-                                            <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 20 20">
-                                                    <path
-                                                        d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                </svg>
-                                            </div>
-                                            <input id="datepicker-range-end" name="end" type="date"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                placeholder="Select date end">
-                                        </div>
-                                    </div>
-                                </div>
+                          <label class="block text-gray-700 dark:text-white mb-2">Date</label>
+                      
+                          <!-- Responsive DATE RANGE PICKER -->
+                          <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+                            
+                            <!-- Start Date -->
+                            <div class="relative w-full">
+                              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-white" xmlns="http://www.w3.org/2000/svg"
+                                  fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                              </div>
+                              <input id="datepicker-range-start" name="start" type="date"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full ps-10 p-2.5 placeholder-gray-500 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date start">
                             </div>
+                      
+                            <!-- Divider (visible only on larger screens) -->
+                            <span class="text-center text-gray-500 dark:text-white sm:px-2 sm:inline hidden">to</span>
+                      
+                            <!-- End Date -->
+                            <div class="relative w-full">
+                              <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-white" xmlns="http://www.w3.org/2000/svg"
+                                  fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                </svg>
+                              </div>
+                              <input id="datepicker-range-end" name="end" type="date"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full ps-10 p-2.5 placeholder-gray-500 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Select date end">
+                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                      
+                      
 
                     <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" type="submit"
                         onclick="submitTicket(event)">Search
