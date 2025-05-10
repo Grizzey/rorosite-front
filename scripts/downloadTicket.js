@@ -9,6 +9,7 @@ export async function downloadTicketImage(ticketId) {
     }
 
     try {
+        console.log(ticketElement);
         // Adjust canvas capture settings for better rendering
         const canvas = await html2canvas(ticketElement, {
             useCORS: true,
@@ -19,6 +20,7 @@ export async function downloadTicketImage(ticketId) {
             logging: true,
             backgroundColor: null,
         }).then(canvas => {
+            console.log("Generated ticket", canvas);
             const dataURL = canvas.toDataURL("image/png");
             if (window.Android && window.Android.saveImage) {
                 window.Android.saveImage(dataURL);
