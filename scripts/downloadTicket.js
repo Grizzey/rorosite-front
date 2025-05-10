@@ -11,15 +11,20 @@ export async function downloadTicketImage(ticketId) {
     try {
         // Adjust canvas capture settings for better rendering
         const canvas = await html2canvas(ticketElement, {
-            useCORS: true, // This allows cross-origin images (important for QR code)
-            scrollX: 0, // Ensure the screen isn't scrolling when capturing
-            scrollY: -window.scrollY, // Adjust if the page has any scroll
-            width: ticketElement.offsetWidth, // Capture the correct width of the element
-            height: ticketElement.offsetHeight, // Capture the correct height of the element
-            logging: true, // Logs for debugging purposes
-            backgroundColor: null, // Transparent background
-            // x: ticketElement.getBoundingClientRect().left, // Adjust x-position
-            // y: ticketElement.getBoundingClientRect().top,  // Adjust y-position
+            useCORS: true,
+            scrollX: 0,
+            scrollY: -window.scrollY,
+            width: ticketElement.offsetWidth,
+            height: ticketElement.offsetHeight,
+            logging: true,
+            backgroundColor: null,
+        }).then(canvas => {
+            const dataURL = canvas.toDataURL("image/png");
+            if (window.Android && window.Android.saveImage) {
+                window.Android.saveImage(dataURL);
+            } else {
+                console.error("Android interface not available.");
+            }
         });
 
         // Convert canvas to image data URL
