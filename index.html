@@ -20,11 +20,16 @@
     <!-- <script src="./scripts/downloadCard.js" type="module"></script> -->
 
     <script>
-        // Detect if in a WebView
         const isWebView = /(wv|WebView|(Android(?!.*Chrome)))/i.test(navigator.userAgent);
-        if (isWebView) {
-            document.getElementById("navbar").classList.add("pt-10");
-        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            if (isWebView) {
+                const navbar = document.getElementById("navbar");
+                if (navbar) {
+                    navbar.classList.add("pt-10");
+                }
+            }
+        });
     </script>
 
 
@@ -116,7 +121,8 @@
                                 <ul class="py-2 text-sm text-gray-700">
                                     <li><a href="#" class="seat-option block px-4 py-2 hover:bg-gray-100">Economy</a>
                                     </li>
-                                    <li><a href="#" class="seat-option block px-4 py-2 hover:bg-gray-100">First Class</a></li>
+                                    <li><a href="#" class="seat-option block px-4 py-2 hover:bg-gray-100">First
+                                            Class</a></li>
                                 </ul>
                             </div>
                         </div>
