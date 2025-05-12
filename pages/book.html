@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <!--DATE PICKER-->
@@ -20,8 +20,8 @@
 </head>
 
 <body class="h-full scroll-smooth">
-    
-    
+
+
     <div id="loader"
         class="fixed inset-0 bg-white flex items-center justify-center z-100 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
@@ -62,155 +62,152 @@
         </nav>
 
         <div class="w-full h-screen flex flex-col justify-center items-center bg-blue-100 px-4">
-                <div class="text-center mb-8">
-                    <p class="text-3xl sm:text-7xl font-bold text-blue-800 drop-shadow">Explore the Philippines</p>
-                    <a class="text-lg mt-2 drop-shadow">Speed, Quality, and Reliability</a>
+            <div class="text-center mb-8">
+                <p class="text-3xl sm:text-7xl font-bold text-blue-800 drop-shadow">Explore the Philippines</p>
+                <a class="text-lg mt-2 drop-shadow">Speed, Quality, and Reliability</a>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl">
+                <div class="flex space-x-6 border-b pb-4 mb-6">
+                    <button id="book" class="text-gray-600 font-medium hover:text-blue-600 transition">Book a
+                        flight</button>
+                    <button id="manage" class="text-gray-600 font-medium hover:text-blue-600 transition">Manage
+                        booking</button>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
-                    <div class="flex space-x-6 border-b pb-2 mb-4">
-                        <button id="book" class="text-gray-500 cursor-pointer">Book a flight</button>
-                        <button id="manage" class="text-gray-500 cursor-pointer">Manage booking</button>
-                        <!-- <button class="text-gray-500">Check-in</button> -->
-                    </div>
 
-                    <div class="mb-4 flex space-x-10 justify-center">
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="trip" checked class="text-blue-500 cursor-pointer">
-                            <span class="text-black">Round trip</span>
-                        </label>
-                        <label class="flex items-center space-x-2">
-                            <input type="radio" name="trip" class="text-blue-500 cursor-pointer">
-                            <span class="text-black">One way</span>
-                        </label>
-                    </div>
+                <div class="mb-6 flex flex-wrap items-center gap-6 justify-center">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="trip" checked class="accent-blue-600 cursor-pointer">
+                        <span class="text-gray-800">Round trip</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="trip" class="accent-blue-600 cursor-pointer">
+                        <span class="text-gray-800">One way</span>
+                    </label>
 
-                    <div class="grid grid-cols-2 gap-4 mb-4">
-                        <!-- DEPARTURE -->
-                        <div class="relative">
-                            <label class="block text-gray-700">Departure</label>
-                            <input id="dropdownDefaultButton" data-dropdown-toggle="Departuredropdown"
-                                class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Batangas"
-                                type="text" />
-
-                            <!-- Dropdown menu -->
-                            <div id="Departuredropdown"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownDefaultButton">
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="departure-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="relative">
+                        <input readonly id="dropdownSeatButton" data-dropdown-toggle="Seatdropdown"
+                            class="text-gray-800 w-40 p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            placeholder="Seat Type" type="text" />
+                        <div id="Seatdropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li><a href="#" class="seat-option block px-4 py-2 hover:bg-gray-100">Economy</a>
+                                </li>
+                                <li><a href="#" class="seat-option block px-4 py-2 hover:bg-gray-100">First Class</a>
+                                </li>
+                            </ul>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- DESTINATION -->
-                        <div class="relative">
-                            <label class="block text-gray-700">Destination</label>
-                            <input id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
-                                class="text-black w-full p-2 border rounded cursor-pointer" placeholder="Caticlan"
-                                type="text"/>
-
-                            <!-- Dropdown menu -->
-                            <div id="Destinationdropdown"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownDestinationButton">
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Batangas</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Calapan</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Bulalacao</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Caticlan</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Damangas</a>
-                                    </li>
-                                    <li><a href="#"
-                                            class="destination-option block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Banago</a>
-                                    </li>
-                                </ul>
-                            </div>
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                    <!-- DEPARTURE -->
+                    <div class="relative">
+                        <label class="block text-gray-700 mb-1">Departure</label>
+                        <input readonly id="dropdownDepartureButton" data-dropdown-toggle="Departuredropdown"
+                            class="text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            placeholder="Batangas" type="text" />
+                        <div id="Departuredropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Batangas</a>
+                                </li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Calapan</a>
+                                </li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Bulalacao</a>
+                                </li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Caticlan</a>
+                                </li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Damangas</a>
+                                </li>
+                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Banago</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="grid gap-4 mb-4 justify-center">
-                        <div>
-                            <!-- DATE PICKER -->
-                            <div>
-                                <label class="block text-gray-700">Date</label>
-    
-                                <!-- DATE PICKER -->
-                                <div class="grid gap-4 mb-4 justify-center">
-                                    <div>
-                                        <!-- Custom DATE RANGE PICKER -->
-                                        <div class="flex items-center">
-                                            <div class="relative">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input id="datepicker-range-start" name="start" type="date"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date start">
-                                            </div>
-                                            <span class="mx-4 text-gray-500">to</span>
-                                            <div class="relative">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-white" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                        viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input id="datepicker-range-end" name="end" type="date"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-blue-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                    placeholder="Select date end">
-                                            </div>
-                                        </div>
-                                    </div>
+                    <!-- DESTINATION -->
+                    <div class="relative">
+                        <label class="block text-gray-700 mb-1">Destination</label>
+                        <input readonly id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
+                            class="text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            placeholder="Caticlan" type="text" />
+                        <div id="Destinationdropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
+                            <ul class="py-2 text-sm text-gray-700">
+                                <li><a href="#"
+                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Batangas</a>
+                                </li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">Calapan</a>
+                                </li>
+                                <li><a href="#"
+                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Bulalacao</a>
+                                </li>
+                                <li><a href="#"
+                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Caticlan</a>
+                                </li>
+                                <li><a href="#"
+                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Damangas</a>
+                                </li>
+                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">Banago</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid gap-6 mb-6">
+                    <div>
+                        <label class="block text-gray-700 mb-2">Date</label>
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+                            <!-- Start Date -->
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
                                 </div>
+                                <input id="datepicker-range-start" name="start" type="date"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-2 focus:ring-blue-500 w-full ps-10 p-2.5 placeholder-gray-400"
+                                    placeholder="Select start date">
                             </div>
-                    </div>
 
-                    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" type="submit"
-                        onclick="submitTicket(event)">Search
-                        destination</button>
+                            <span class="text-center text-gray-500 sm:px-2 hidden sm:inline">to</span>
+
+                            <!-- End Date -->
+                            <div class="relative w-full">
+                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                                    </svg>
+                                </div>
+                                <input id="datepicker-range-end" name="end" type="date"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-2 focus:ring-blue-500 w-full ps-10 p-2.5 placeholder-gray-400"
+                                    placeholder="Select end date">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <button class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition"
+                    type="submit" onclick="submitTicket(event)">Search destination</button>
             </div>
         </div>
+    </div>
 
-        <!-- Footer -->
-        <footer class="w-full bg-gray-900 py-10 text-center text-white">
-            &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
-        </footer>
+    <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-600" type="submit"
+        onclick="submitTicket(event)">Search
+        destination</button>
+    </div>
+    </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w-full bg-gray-900 py-10 text-center text-white">
+        &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
+    </footer>
     </div>
 </body>
 
