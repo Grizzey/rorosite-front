@@ -3,7 +3,7 @@ export async function revokeAllSessions() {
     status.textContent = 'Processing...';
 
     try {
-        const res = await fetch('/admin/revoke-all', {
+        const res = await fetch('https://rorosite-back.onrender.com/admin/revoke-all', {
             method: 'POST'
         });
         const data = await res.json();
@@ -16,3 +16,5 @@ export async function revokeAllSessions() {
         status.textContent = '⚠️ Error: ' + err.message;
     }
 }
+
+window.revokeAllSessions = revokeAllSessions;
