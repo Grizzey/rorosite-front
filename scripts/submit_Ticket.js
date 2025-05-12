@@ -11,9 +11,15 @@ import {
     getFirestore
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-import { ticketHandler } from "./ticketHandler.js";
-import { loginCheck } from "./checkUserToDashboard.js";
-import { getUserData } from "./userCheck.js";
+import {
+    ticketHandler
+} from "./ticketHandler.js";
+import {
+    loginCheck
+} from "./checkUserToDashboard.js";
+import {
+    getUserData
+} from "./userCheck.js";
 
 const getFirebaseConfig = async () => {
     try {
@@ -47,15 +53,17 @@ async function submitTicket(event) {
 
     const user = auth.currentUser;
 
-
     if (!user) {
         alert("You need to be logged in to book a ticket.");
         window.location.href = "/pages/login.html"; // or wherever your login page is
         return;
     }
 
-    // Proceed with handling the ticket
-    await ticketHandler(user); // You can pass user info if needed
+    if (confirm("Are you sure with the ticket information?")) {
+        await ticketHandler(user);
+    } else {
+        console.log("User has canceled ticket");
+    }
 }
 
 

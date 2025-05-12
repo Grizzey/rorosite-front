@@ -24,10 +24,8 @@
 
         window.addEventListener("DOMContentLoaded", () => {
             if (isWebView) {
-                const navbar = document.getElementById("navbar");
-                if (navbar) {
-                    navbar.classList.add("pt-5");
-                }
+                const appCard = document.getElementById("app-download-card");
+                appCard.style.display = "none";
             }
         });
     </script>
