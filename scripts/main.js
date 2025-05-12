@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('.departure-option').forEach(option => {
         option.addEventListener('click', (e) => {
             e.preventDefault();
-            const btn = document.getElementById('dropdownDefaultButton');
+            const btn = document.getElementById('dropdownDepartureButton');
             if (btn) btn.value = option.textContent;
         });
     });
@@ -40,6 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const btn = document.getElementById('dropdownDestinationButton');
+            if (btn) btn.value = option.textContent;
+        });
+    });
+
+    document.querySelectorAll('.seat-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('dropdownSeatButton');
             if (btn) btn.value = option.textContent;
         });
     });
