@@ -96,7 +96,8 @@ export const registerUser = async (email, password, firstname, lastname) => {
             lastname: lastname,
             fullname: `${firstname} ${lastname}`,
             email: user.email,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            role: "User"
         });
 
         console.log("[ Handler | Success ] User registered successfully:", user);

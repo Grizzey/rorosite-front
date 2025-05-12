@@ -58,7 +58,7 @@
                 <a href="../index.html" class="block py-2 text-stone-100">Home</a>
                 <a href="/pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
                 <a href="/pages/rates.html" class="block py-2 text-stone-100">Rates</a>
-                <a href="/pages/login.html"class="block py-2 text-stone-100">Login</a>
+                <a href="/pages/login.html" class="block py-2 text-stone-100">Login</a>
             </div>
         </nav>
 
@@ -72,67 +72,14 @@
 
         <!-- MAIN CONTENTS HERE PLS -->
 
-        <section class="min-h-screen bg-cover bg-center py-16 px-4" id="profile-pic">
-
-            <!-- User Info Full Width -->
-            <div class="w-full px-4 mb-10">
-
-                <div
-                    class="max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-xl shadow-md p-6 flex items-center gap-6">
-
-                    <!-- Avatar or Icon Placeholder -->
-
-
-                    <!-- User Details -->
-                    <div>
-
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2">User ID Card</h2>
-
-                        <div class="flex flex-row pt-5">
-                            <div id="placeholder-pfp"
-                                class="w-24 h-24 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-2xl font-bold">
-                                ID
-                            </div>
-
-                            <div class="ml-5">
-                                <p class="text-gray-700 text-base"><span class="font-medium">Name:</span> <span
-                                        id="userName"></span></p>
-                                <p class="text-gray-700 text-base"><span class="font-medium">Email:</span> <span
-                                        id="userEmail"></span></p>
-                            </div>
-
-                        </div>
-                        <button onclick="logoutUser()"
-                            class="mt-20 px-10 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
-                            Logout
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Optional Logout Button -->
-                <div class="max-w-2xl mx-auto mt-4 text-center">
-
-
-                </div>
-
-            </div>
-
-
-
-            <!-- Tickets Section Full Width -->
-            <div class="max-w-6xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-8 mt-10 text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Tickets</h2>
-                <button onclick="window.location.href='/pages/book.html'"
-                    class="px-10 mx-20 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition duration-200">
-                    Book New
-                </button>
-
-                <!-- Ticket List -->
-                <div id="ticketList" class="mt-8 flex flex-wrap justify-center gap-6">
-                    <!-- JS will inject tickets here -->
-                </div>
-            </div>
-        </section>
+        <div class="bg-white p-6 rounded-2xl shadow-xl mt-8 max-w-2xl w-full">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Admin Panel</h2>
+            <button onclick="revokeAllSessions()"
+                class="w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition">
+                Force Sign Out All Users
+            </button>
+            <p id="adminStatus" class="text-sm text-gray-600 mt-3"></p>
+        </div>
 
         <footer class="w-full bg-gray-900 py-10 text-center text-white">
             &copy; 2025 Montecillo Roro. All Rights Reserved. | Javaitech
