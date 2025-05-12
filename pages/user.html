@@ -13,6 +13,12 @@
     <script src="../scripts/loginHandler.js" type="module"></script>
     <script src="../scripts/checkUserToDashboard.js" type="module"></script>
 
+    <script>
+        function toAdminPanel() {
+            window.location.href = "admin.html";
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
@@ -58,7 +64,7 @@
                 <a href="../index.html" class="block py-2 text-stone-100">Home</a>
                 <a href="/pages/booking.html" class="block py-2 text-stone-100">Routes & Schedules</a>
                 <a href="/pages/rates.html" class="block py-2 text-stone-100">Rates</a>
-                <a href="/pages/login.html"class="block py-2 text-stone-100">Login</a>
+                <a href="/pages/login.html" class="block py-2 text-stone-100">Login</a>
             </div>
         </nav>
 
@@ -102,19 +108,25 @@
                             </div>
 
                         </div>
-                        <button onclick="logoutUser()"
-                            class="mt-20 px-10 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
-                            Logout
-                        </button>
+
                     </div>
+
+
                 </div>
 
                 <!-- Optional Logout Button -->
-                <div class="max-w-2xl mx-auto mt-4 text-center">
+                <div class="max-w-lg mx-auto mt-4 flex flex-col">
+                    <button id="adminPanelButton" hidden onclick="toAdminPanel()"
+                        class="mt-5 px-10 py-2 bg-green-500 text-white rounded-md shadow hover:bg-green-600 transition duration-200">
+                        Admin Panel
+                    </button>
 
+                    <button onclick="logoutUser()"
+                        class="mt-5 px-10 py-2 bg-red-500 text-white rounded-md shadow hover:bg-red-600 transition duration-200">
+                        Logout
+                    </button>
 
                 </div>
-
             </div>
 
 

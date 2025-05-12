@@ -49,3 +49,5 @@ export const loginCheck = async () => {
 };
 
 loginCheck();
+
+window.loginCheck = loginCheck;

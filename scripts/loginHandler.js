@@ -74,6 +74,7 @@ export const loginUser = async (email, password) => {
         }
     } catch (error) {
         console.error(" [ Handler | Fail ] Login error");
+        alert("Login credentials might be wrong!");
         return false;
     }
 };
@@ -88,6 +89,7 @@ export const registerUser = async (email, password, firstname, lastname) => {
     }
 
     try {
+        console.log(email, password, firstname, lastname);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 

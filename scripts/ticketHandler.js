@@ -41,12 +41,13 @@ export async function ticketHandler(user) {
 
 
     const tripType = document.querySelector('input[name="trip"]:checked').nextElementSibling.textContent.trim();
-    const dep = document.getElementById("dropdownDefaultButton").value;
+    const dep = document.getElementById("dropdownDepartureButton").value;
     const des = document.getElementById("dropdownDestinationButton").value;
     const date_start = document.getElementById("datepicker-range-start").value;
     const date_end = document.getElementById("datepicker-range-end").value;
+    const seat_type = document.getElementById("dropdownSeatButton").value;
 
-    if (!dep || !des || !date_start || (tripType === "Round trip" && !date_end)) {
+    if (!dep || !des || !date_start || (tripType === "Round trip" && !date_end && !seat_type)) {
         alert("Please fill out all required fields.");
         return;
     }
@@ -63,6 +64,16 @@ export async function ticketHandler(user) {
         const userId = user.uid;
 
         const ticketsRef = collection(db, "users", userId, "tickets");
+
+        let ticketPrice;
+        if (seat_type == "Economy") {
+            ticketPrice = 500;
+        } else if (seat_type == "First Class") {
+            ticketPrice = 1500;
+        } else {
+            ticketPrice = "TBA"
+        }
+
         // Add a new document to the "tickets" subcollection
         await addDoc(ticketsRef, {
             userId: user.uid, // Optionally associate ticket with user
@@ -72,7 +83,8 @@ export async function ticketHandler(user) {
             date_start,
             date_end: date_end || null,
             timestamp: new Date().toISOString(),
-            price: "50",
+            seat_type: seat_type,
+            price: ticketPrice || "TBA",
             id: generateTicketID()
         });
 

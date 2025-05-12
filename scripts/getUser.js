@@ -74,6 +74,13 @@ export async function loadUserData(uid) {
 
     try {
         const userDoc = await getDoc(doc(db, "users", uid));
+
+
+        // ADMIN BUTTON
+        if (userDoc.data().role !== "User") {
+            document.getElementById("adminPanelButton").removeAttribute("hidden");
+        }
+
         if (userDoc.exists()) {
             let newFullname = userDoc.data().fullname.replace(" ", ", ")
             userNameElement.textContent = newFullname;
@@ -114,7 +121,7 @@ export async function loadUserData(uid) {
         </div>
         <div>
             <p class="font-medium text-gray-700">Seat</p>
-            <p class="text-gray-900 font-semibold">${ticketData.seat || "Unassigned"}</p>
+            <p class="text-gray-900 font-semibold">${ticketData.seat_type || "Unassigned"}</p>
         </div>
         <div>
             <p class="font-medium text-gray-700">Route</p>

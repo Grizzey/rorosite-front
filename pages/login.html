@@ -15,6 +15,8 @@
 
     <script>
         function togglePassVisibility() {
+            console.warn("SEE PASS");
+            
             let passwordField = document.getElementById("PasswordField");
             let eyeIcon = document.getElementById("togglePassVisibility").querySelector("i");
             if (passwordField.type === "password") {
@@ -105,7 +107,7 @@
                     </div>
 
                     <submit id="loginBtn"
-                        class="py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
+                        class="py-2 text-center px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
                         onclick="submitLogin()">Login</submit>
 
                     <p class="text-center text-gray-600">

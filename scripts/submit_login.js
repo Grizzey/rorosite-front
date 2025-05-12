@@ -12,6 +12,9 @@ async function submitLogin() {
     let passwordField = document.getElementById("PasswordField");
     let errorMessage = document.getElementById("error-message");
 
+    console.warn(emailField.value, passwordField.value);
+    
+
     let isValid = true;
 
     [emailField, passwordField].forEach(field => {
@@ -35,9 +38,10 @@ async function submitLogin() {
         const user = await loginUser(emailField.value, passwordField.value);
 
         await loadUserData(user.uid);
-        alert("Success")
-        window.location.href = "user.html"
+        // alert("Success")
+        // window.location.href = "user.html"
     } catch (error) {
+        alert("An error occured!")
         errorMessage.textContent = "Login failed: " + error.message;
         errorMessage.classList.remove("hidden");
     }
