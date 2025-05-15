@@ -52,6 +52,36 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    document.querySelectorAll('.seat-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('dropdownSeatButton');
+            const dropdown = document.getElementById('Seatdropdown');
+            if (btn) btn.value = option.textContent;
+            if (dropdown) dropdown.classList.add('hidden');
+        });
+    });
+
+    document.querySelectorAll('.departure-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('dropdownDepartureButton');
+            const dropdown = document.getElementById('Departuredropdown');
+            if (btn) btn.value = option.textContent;
+            if (dropdown) dropdown.classList.add('hidden');
+        });
+    });
+
+    document.querySelectorAll('.destination-option').forEach(option => {
+        option.addEventListener('click', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('dropdownDestinationButton');
+            const dropdown = document.getElementById('Destinationdropdown');
+            if (btn) btn.value = option.textContent;
+            if (dropdown) dropdown.classList.add('hidden');
+        });
+    });
+
     // Tabs: Book & Manage
     const book = document.getElementById("book");
     const manage = document.getElementById("manage");
@@ -105,8 +135,13 @@ document.querySelectorAll("a").forEach(link => {
 });
 
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 const getFirebaseConfig = async () => {
     try {
@@ -141,4 +176,3 @@ const initializeFirebase = async () => {
 };
 
 initializeFirebase();
-
