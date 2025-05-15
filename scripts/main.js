@@ -103,3 +103,42 @@ document.querySelectorAll("a").forEach(link => {
         }
     });
 });
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+const getFirebaseConfig = async () => {
+    try {
+        const response = await fetch("https://rorosite-back.onrender.com/config");
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to fetch Firebase config:", error);
+        return null;
+    }
+};
+
+const initializeFirebase = async () => {
+    const firebaseConfig = await getFirebaseConfig();
+    if (!firebaseConfig) {
+        console.error("Firebase config is missing");
+        return;
+    }
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if (document.getElementById("navbar-login-button")) {
+                document.getElementById("navbar-login-button").innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`
+                // document.getElementById("navbar-login-button").innerText = "User Page"
+            }
+        } else {
+            console.log("No user is logged in.");
+        }
+    });
+};
+
+initializeFirebase();
+

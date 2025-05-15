@@ -38,8 +38,6 @@ async function submitLogin() {
         const user = await loginUser(emailField.value, passwordField.value);
 
         await loadUserData(user.uid);
-        // alert("Success")
-        // window.location.href = "user.html"
     } catch (error) {
         alert("An error occured!")
         errorMessage.textContent = "Login failed: " + error.message;

@@ -13,10 +13,6 @@ import {
     getDocs
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
-import {
-    downloadTicketImage
-} from "./downloadTicket.js"
-
 let auth, db;
 
 const getFirebaseConfig = async () => {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
@@ -17,7 +17,6 @@
     <script src="./scripts/submit_Ticket.js" type="module"></script>
     <script src="./scripts/manageButton.js" type="module"></script>
     <script src="./scripts/userCheck.js" type="module"></script>
-    <!-- <script src="./scripts/downloadCard.js" type="module"></script> -->
 
     <script>
         const isWebView = /(wv|WebView|(Android(?!.*Chrome)))/i.test(navigator.userAgent);
@@ -53,8 +52,8 @@
                 <a href="/pages/booking.html" class="nav-link text-white hover:text-neutral-300 transition">Routes &
                     Schedules</a>
                 <a href="/pages/rates.html" class="nav-link text-white hover:text-neutral-300 transition">Rates</a>
-                <a href="/pages/login.html"
-                    class="bg-blue-600 px-5 rounded-lg nav-link text-white hover:text-neutral-300 transition">Login</a>
+                <a id="navbar-login-button" href="/pages/login.html"
+                    class="bg-blue-600 px-5 rounded-lg nav-link text-white hover:text-neutral-300 transition"><i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>Login</a>
 
             </div>
 
@@ -73,7 +72,7 @@
                 <a href="index.html" class="block py-2">Home</a>
                 <a href="/pages/booking.html" class="block py-2">Routes & Schedules</a>
                 <a href="/pages/rates.html" class="block py-2">Rates</a>
-                <a href="/pages/login.html" class="block py-2">Login</a>
+                <a id="navbar-login-button" href="/pages/login.html" class="block py-2">Login</a>
 
             </div>
         </nav>

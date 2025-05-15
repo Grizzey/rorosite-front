@@ -10,10 +10,7 @@ import {
 import { 
     getFirestore, 
     doc, 
-    setDoc, 
-    getDoc, 
-    collection, 
-    addDoc 
+    setDoc
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 
