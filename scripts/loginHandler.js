@@ -71,7 +71,7 @@ export const loginUser = async (email, password) => {
         }
     } catch (error) {
         console.error(" [ Handler | Fail ] Login error");
-        alert("Login credentials might be wrong!");
+        // alert("Login credentials might be wrong!");
         return false;
     }
 };
