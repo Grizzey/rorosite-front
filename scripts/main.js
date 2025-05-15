@@ -27,22 +27,49 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Departure & Destination pickers
-    document.querySelectorAll('.departure-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('dropdownDepartureButton');
-            if (btn) btn.value = option.textContent;
-        });
-    });
+ // Departure & Destination pickers
+const departureOptions = document.querySelectorAll('.departure-option');
+const destinationOptions = document.querySelectorAll('.destination-option');
 
-    document.querySelectorAll('.destination-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('dropdownDestinationButton');
-            if (btn) btn.value = option.textContent;
-        });
-    });
+departureOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedValue = option.textContent;
+        const btn = document.getElementById('dropdownDepartureButton');
+        if (btn) btn.value = selectedValue;
+
+        // Enable all destination options
+        destinationOptions.forEach(dest => dest.classList.remove('disabled-option'));
+
+        // Disable matching destination option
+        destinationOptions.forEach(dest => {
+            if (dest.textContent === selectedValue) {
+                dest.classList.add('disabled-option');
+            }
+        });
+    });
+});
+
+destinationOptions.forEach(option => {
+    option.addEventListener('click', (e) => {
+        e.preventDefault();
+        const selectedValue = option.textContent;
+        const btn = document.getElementById('dropdownDestinationButton');
+        if (btn) btn.value = selectedValue;
+
+        // Enable all departure options
+        departureOptions.forEach(dep => dep.classList.remove('disabled-option'));
+
+        // Disable matching departure option
+        departureOptions.forEach(dep => {
+            if (dep.textContent === selectedValue) {
+                dep.classList.add('disabled-option');
+            }
+        });
+    });
+});
+    
+    
 
     document.querySelectorAll('.seat-option').forEach(option => {
         option.addEventListener('click', (e) => {
