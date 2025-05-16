@@ -14,12 +14,6 @@ import {
 import {
     ticketHandler
 } from "./ticketHandler.js";
-import {
-    loginCheck
-} from "./checkUserToDashboard.js";
-import {
-    getUserData
-} from "./userCheck.js";
 
 const getFirebaseConfig = async () => {
     try {

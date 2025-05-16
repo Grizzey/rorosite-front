@@ -2,8 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebas
 import { 
     getAuth, 
     signInWithEmailAndPassword, 
-    createUserWithEmailAndPassword, 
-    onAuthStateChanged,
+    createUserWithEmailAndPassword,
     signOut
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
@@ -71,7 +70,7 @@ export const loginUser = async (email, password) => {
         }
     } catch (error) {
         console.error(" [ Handler | Fail ] Login error");
-        // alert("Login credentials might be wrong!");
+        alert("Login credentials might be wrong!");
         return false;
     }
 };

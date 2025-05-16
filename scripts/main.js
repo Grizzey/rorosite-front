@@ -1,5 +1,46 @@
 import "https://cdn.jsdelivr.net/npm/flatpickr";
 
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import {
+    getAuth,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
+const getFirebaseConfig = async () => {
+    try {
+        const response = await fetch("https://rorosite-back.onrender.com/config");
+        return await response.json();
+    } catch (error) {
+        console.error("Failed to fetch Firebase config:", error);
+        return null;
+    }
+};
+
+const initializeFirebase = async () => {
+    const firebaseConfig = await getFirebaseConfig();
+    if (!firebaseConfig) {
+        console.error("Firebase config is missing");
+        return;
+    }
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            if (document.getElementById("navbar-login-button")) {
+                document.getElementById("navbar-login-button").innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`
+                // document.getElementById("navbar-login-button").innerText = "User Page"
+            }
+        } else {
+            console.log("No user is logged in.");
+        }
+    });
+};
+
+initializeFirebase();
 
 document.addEventListener("DOMContentLoaded", function () {
     // Navbar scroll behavior
@@ -27,22 +68,77 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Departure & Destination pickers
-    document.querySelectorAll('.departure-option').forEach(option => {
+    // Handle the Departure dropdown
+    document.querySelectorAll('#Departuredropdown .departure-option').forEach(option => {
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const btn = document.getElementById('dropdownDepartureButton');
-            if (btn) btn.value = option.textContent;
+            const selectedDeparture = option.querySelector('.font-medium').textContent.trim(); // Get only the main text (e.g., "Iloilo")
+
+            const dropdown = document.getElementById('Departuredropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+
+            if (btn && selectedDeparture) {
+                btn.value = selectedDeparture; // Set only the main text for Departure button using value (for input fields)
+            }
+
+            // Enable all destination options first
+            document.querySelectorAll('.destination-option').forEach(dep => {
+                dep.classList.remove('disabled');
+                dep.style.pointerEvents = 'auto';
+                dep.style.opacity = '1';
+            });
+
+            // Disable the selected departure option in the destination list
+            document.querySelectorAll('.destination-option').forEach(dep => {
+                const depProvince = dep.querySelector('.font-medium')?.textContent.trim();
+                if (depProvince === selectedDeparture) {
+                    dep.classList.add('disabled');
+                    dep.style.pointerEvents = 'none';
+                    dep.style.opacity = '0.5';
+                }
+            });
         });
     });
 
-    document.querySelectorAll('.destination-option').forEach(option => {
+    // Handle the Destination dropdown
+    document.querySelectorAll('#Destinationdropdown .destination-option').forEach(option => {
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const btn = document.getElementById('dropdownDestinationButton');
-            if (btn) btn.value = option.textContent;
+            const selectedDestination = option.querySelector('.font-medium')?.textContent.trim(); // Get only the main text (e.g., "Batangas")
+
+            const dropdown = document.getElementById('Destinationdropdown');
+            if (dropdown) dropdown.classList.add('hidden');
+
+            if (btn && selectedDestination) {
+                btn.value = selectedDestination; // Set only the main text for Destination button using value (for input fields)
+            }
+
+            // Enable all departure options first
+            document.querySelectorAll('.departure-option').forEach(dep => {
+                dep.classList.remove('disabled');
+                dep.style.pointerEvents = 'auto';
+                dep.style.opacity = '1';
+            });
+
+            // Disable the selected destination option in the departure list
+            document.querySelectorAll('.departure-option').forEach(dep => {
+                const depProvince = dep.querySelector('.font-medium')?.textContent.trim();
+                if (depProvince === selectedDestination) {
+                    dep.classList.add('disabled');
+                    dep.style.pointerEvents = 'none';
+                    dep.style.opacity = '0.5';
+                }
+            });
         });
     });
+
+
+
+
+
+
 
     document.querySelectorAll('.seat-option').forEach(option => {
         option.addEventListener('click', (e) => {
@@ -61,27 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (dropdown) dropdown.classList.add('hidden');
         });
     });
-
-    document.querySelectorAll('.departure-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('dropdownDepartureButton');
-            const dropdown = document.getElementById('Departuredropdown');
-            if (btn) btn.value = option.textContent;
-            if (dropdown) dropdown.classList.add('hidden');
-        });
-    });
-
-    document.querySelectorAll('.destination-option').forEach(option => {
-        option.addEventListener('click', (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('dropdownDestinationButton');
-            const dropdown = document.getElementById('Destinationdropdown');
-            if (btn) btn.value = option.textContent;
-            if (dropdown) dropdown.classList.add('hidden');
-        });
-    });
-
     // Tabs: Book & Manage
     const book = document.getElementById("book");
     const manage = document.getElementById("manage");
@@ -134,45 +209,20 @@ document.querySelectorAll("a").forEach(link => {
     });
 });
 
+//SEE PASSWORD INPUTS
+document.querySelectorAll('.toggle-pass').forEach(button => {
+    button.addEventListener('click', () => {
+        const input = button.closest('div').querySelector('input');
+        const icon = button.querySelector('i');
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import {
-    getAuth,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-
-const getFirebaseConfig = async () => {
-    try {
-        const response = await fetch("https://rorosite-back.onrender.com/config");
-        return await response.json();
-    } catch (error) {
-        console.error("Failed to fetch Firebase config:", error);
-        return null;
-    }
-};
-
-const initializeFirebase = async () => {
-    const firebaseConfig = await getFirebaseConfig();
-    if (!firebaseConfig) {
-        console.error("Firebase config is missing");
-        return;
-    }
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            if (document.getElementById("navbar-login-button")) {
-                document.getElementById("navbar-login-button").innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`
-                // document.getElementById("navbar-login-button").innerText = "User Page"
-            }
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
         } else {
-            console.log("No user is logged in.");
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
         }
     });
-};
-
-initializeFirebase();
+});

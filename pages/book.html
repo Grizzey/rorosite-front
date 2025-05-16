@@ -108,60 +108,104 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-6 mb-6">
-                    <!-- DEPARTURE -->
-                    <div class="relative">
-                        <label class="block text-gray-700 mb-1">Departure</label>
-                        <input readonly id="dropdownDepartureButton" data-dropdown-toggle="Departuredropdown"
-                            class="text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            placeholder="Batangas" type="text" />
-                        <div id="Departuredropdown"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
-                            <ul class="py-2 text-sm text-gray-700">
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Batangas</a>
-                                </li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Calapan</a>
-                                </li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Bulalacao</a>
-                                </li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Caticlan</a>
-                                </li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Damangas</a>
-                                </li>
-                                <li><a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">Banago</a>
-                                </li>
-                            </ul>
+                        <!-- DEPARTURE -->
+                        <div class="relative">
+                            <label class="block text-gray-700 mb-1">Departure</label>
+                            <input readonly id="dropdownDepartureButton" data-dropdown-toggle="Departuredropdown"
+                                class="focus:outline-none caret-transparent text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Batangas" type="text" />
+                            <div id="Departuredropdown"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
+                                <ul class="py-2 text-sm text-gray-700">
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Batangas</div>
+                                            <div class="text-xs text-gray-500">Batangas Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Oriental Mindoro</div>
+                                            <div class="text-xs text-gray-500">Calapan Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Oriental Mindoro</div>
+                                            <div class="text-xs text-gray-500">Bulalacao Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Aklan</div>
+                                            <div class="text-xs text-gray-500">Caticlan Jetty Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Iloilo</div>
+                                            <div class="text-xs text-gray-500">Dumangas Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="departure-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Negros Occidental</div>
+                                            <div class="text-xs text-gray-500">Banago Port (Bacolod)</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- DESTINATION -->
-                    <div class="relative">
-                        <label class="block text-gray-700 mb-1">Destination</label>
-                        <input readonly id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
-                            class="text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            placeholder="Caticlan" type="text" />
-                        <div id="Destinationdropdown"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
-                            <ul class="py-2 text-sm text-gray-700">
-                                <li><a href="#"
-                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Batangas</a>
-                                </li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">Calapan</a>
-                                </li>
-                                <li><a href="#"
-                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Bulalacao</a>
-                                </li>
-                                <li><a href="#"
-                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Caticlan</a>
-                                </li>
-                                <li><a href="#"
-                                        class="destination-option block px-4 py-2 hover:bg-gray-100">Damangas</a>
-                                </li>
-                                <li><a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">Banago</a>
-                                </li>
-                            </ul>
+                        <!-- DESTINATION -->
+                        <div class="relative">
+                            <label class="block text-gray-700 mb-1">Destination</label>
+                            <input readonly id="dropdownDestinationButton" data-dropdown-toggle="Destinationdropdown"
+                                class="focus:outline-none caret-transparent text-gray-800 w-full p-2 border border-gray-300 rounded-md cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                placeholder="Caticlan" type="text" />
+                            <div id="Destinationdropdown"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-md shadow-md w-44">
+                                <ul class="py-2 text-sm text-gray-700">
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Batangas</div>
+                                            <div class="text-xs text-gray-500">Batangas Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Oriental Mindoro</div>
+                                            <div class="text-xs text-gray-500">Calapan Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Oriental Mindoro</div>
+                                            <div class="text-xs text-gray-500">Bulalacao Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Aklan</div>
+                                            <div class="text-xs text-gray-500">Caticlan Jetty Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Iloilo</div>
+                                            <div class="text-xs text-gray-500">Dumangas Port</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="destination-option block px-4 py-2 hover:bg-gray-100">
+                                            <div class="font-medium">Negros Occidental</div>
+                                            <div class="text-xs text-gray-500">Banago Port (Bacolod)</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 <div class="grid gap-6 mb-6">
                     <div>
