@@ -134,12 +134,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-
-
-
-
-
-
     document.querySelectorAll('.seat-option').forEach(option => {
         option.addEventListener('click', (e) => {
             e.preventDefault();

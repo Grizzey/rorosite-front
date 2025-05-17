@@ -1,14 +1,16 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
     signOut
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
-import { 
-    getFirestore, 
-    doc, 
+import {
+    getFirestore,
+    doc,
     setDoc
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
@@ -38,36 +40,47 @@ export const loginUser = async (email, password) => {
         return;
     }
 
+    //OLD
+    // try {
+    //     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    //     const user = userCredential.user;
+
+    //     const idToken = await user.getIdToken();
+
+    //     // Send ID token to backend for verification
+    //     const response = await fetch("https://rorosite-back.onrender.com/verifyToken", {
+    //         method: "POST",
+    //         headers: { "Content-Type": "application/json" },
+    //         body: JSON.stringify({ idToken }),
+    //     });
+
+    //     const data = await response.json();
+
+    //     if (data.success) {
+    //         const userRef = doc(db, "users", user.uid);
+    //         await setDoc(userRef, {
+    //             name: user.fullname,
+    //             email: user.email,
+    //             lastLogin: new Date().toISOString(),
+    //         }, { merge: true });
+
+    //         console.log("[ Handler | Success ] User data saved in Firestore!");
+
+    //         window.location.href = "user.html";
+    //         return true;
+    //     } else {
+    //         console.error(" [ Handler | Fail ] Authentication failed");
+    //     }
+    // } catch (error) {
+    //     console.error(" [ Handler | Fail ] Login error");
+    //     alert("Login credentials might be wrong!");
+    //     return false;
+    // }
+
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-
-        const idToken = await user.getIdToken();
-
-        // Send ID token to backend for verification
-        const response = await fetch("https://rorosite-back.onrender.com/verifyToken", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idToken }),
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            const userRef = doc(db, "users", user.uid);
-            await setDoc(userRef, {
-                name: user.fullname,
-                email: user.email,
-                lastLogin: new Date().toISOString(),
-            }, { merge: true });
-            
-            console.log("[ Handler | Success ] User data saved in Firestore!");
-
-            window.location.href = "user.html";
-            return true;
-        } else {
-            console.error(" [ Handler | Fail ] Authentication failed");
-        }
+        window.location.href = "user.html";
+        return true;
     } catch (error) {
         console.error(" [ Handler | Fail ] Login error");
         alert("Login credentials might be wrong!");
