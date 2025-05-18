@@ -33,6 +33,21 @@ const initializeFirebase = async () => {
             if (document.getElementById("navbar-login-button")) {
                 document.getElementById("navbar-login-button").innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`
                 // document.getElementById("navbar-login-button").innerText = "User Page"
+
+                const ticketCards = ["index.html", "../pages/book.html"];
+
+                if (ticketCards.some(card => window.location.href.includes(card))) {
+                    const manage_btn = document.getElementById("manage");
+
+                    if (manage_btn) {
+                        manage_btn.addEventListener("click", () => {
+                            window.location.href = "../pages/user.html";
+                        });
+                    }
+                } else {
+                    console.log("No ticket cards available");
+                }
+
             }
         } else {
             console.log("No user is logged in.");
