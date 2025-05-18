@@ -32,8 +32,8 @@ const initializeFirebase = async () => {
 
         const navbar_login = document.getElementById("navbar-login-button");
 
-        const ticketCards = ["index.html", "book.html"];
-        const manage_btn = document.getElementById("manage");
+        const ticketCards = ["", "index.html", "book.html"];
+        const manage_btn = document.querySelector("#manage");
 
         const infoPages = ["rates.html", "booking.html"];
         const toBook_btn = document.querySelectorAll("#info-to-book");
@@ -64,16 +64,15 @@ const initializeFirebase = async () => {
 
                 //ROUTES AND RATES TO TICKETING
                 if (infoPages.some(page => window.location.href.includes(page))) {
-                if (toBook_btn) {
-                    toBook_btn.forEach(btn => {
-                        btn.addEventListener("click", (e) => {
-                            e.preventDefault();
-                            window.location.href = "../pages/book.html";
-                        });
-                    })
-                    
+                    if (toBook_btn) {
+                        toBook_btn.forEach(btn => {
+                            btn.addEventListener("click", (e) => {
+                                e.preventDefault();
+                                window.location.href = "../pages/book.html";
+                            });
+                        })
+                    }
                 }
-            }
 
             }
         } else {
