@@ -8,9 +8,7 @@ import {
 import {
     getFirestore,
     doc,
-    getDoc,
-    collection,
-    getDocs
+    getDoc
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
 
 let auth, db;

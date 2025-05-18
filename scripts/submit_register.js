@@ -1,6 +1,5 @@
 import {
-    loginUser,
-    registerUser,
+    registerUser
 } from "./loginHandler.js";
 
 async function submitRegister() {

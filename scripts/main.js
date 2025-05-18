@@ -92,19 +92,13 @@ const initializeFirebase = async () => {
             }
 
             if (infoPages.some(page => window.location.href.includes(page))) {
-                // if (toBook_btn) {
-                    toBook_btn.forEach(btn => {
-                        btn.addEventListener("click", (e) => {
-                            e.preventDefault();
-                            window.location.href = "../pages/login.html";
-                        });
-                    })
-                    
-                // }
+                toBook_btn.forEach(btn => {
+                    btn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        window.location.href = "../pages/login.html";
+                    });
+                })
             }
-
-
-            
         }
     });
 };

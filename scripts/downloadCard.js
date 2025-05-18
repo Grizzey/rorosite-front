@@ -1,6 +1,5 @@
 const userAgent = navigator.userAgent;
 
-
 export function downloadCard() {
     if (userAgent.includes("wv")) {
         // The website is likely running inside a WebView

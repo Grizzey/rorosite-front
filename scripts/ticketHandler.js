@@ -1,19 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
 
 import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
-    createUserWithEmailAndPassword, 
-    onAuthStateChanged,
-    signOut
+    getAuth
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
 
 
 import {
     getFirestore,
-    doc,
-    setDoc,
-    getDoc,
     collection,
     addDoc
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";

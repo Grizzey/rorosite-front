@@ -1,6 +1,5 @@
 import {
-    loginUser,
-    registerUser,
+    loginUser
 } from "./loginHandler.js";
 
 import {
