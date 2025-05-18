@@ -51,6 +51,7 @@ const initializeFirebase = async () => {
                 //TICKETING PAGES
                 if (ticketCards.some(card => window.location.href.includes(card))) {
                     if (manage_btn) {
+                        console.log("Manage")
                         manage_btn.addEventListener("click", (e) => {
                             e.preventDefault();
                             window.location.href = "../pages/user.html";
