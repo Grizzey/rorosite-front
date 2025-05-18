@@ -7,6 +7,12 @@ import {
     getAuth,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+
+let auth, db;
 
 const getFirebaseConfig = async () => {
     try {
@@ -18,6 +24,7 @@ const getFirebaseConfig = async () => {
     }
 };
 
+
 const initializeFirebase = async () => {
     const firebaseConfig = await getFirebaseConfig();
     if (!firebaseConfig) {
@@ -28,7 +35,10 @@ const initializeFirebase = async () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    
+
     onAuthStateChanged(auth, (user) => {
+        const PROTECTRED_PAGES = ["admin.html"]
 
         const navbar_login = document.getElementById("navbar-login-button");
 
@@ -37,7 +47,7 @@ const initializeFirebase = async () => {
 
         const infoPages = ["rates.html", "booking.html"];
         const toBook_btn = document.querySelectorAll("#info-to-book");
-
+  
         if (user) {
             if (document.getElementById("navbar-login-button")) {
                 navbar_login.innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`;
