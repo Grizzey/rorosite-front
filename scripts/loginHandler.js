@@ -102,10 +102,23 @@ export const registerUser = async (email, password, firstname, lastname) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
+        function capitalizeWords(str) {
+            return str
+                .toLowerCase()
+                .split(' ')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+        }
+
+        let fixFirstName = capitalizeWords(firstname);
+        let fixLastName = capitalizeWords(lastname);
+
+        console.log(fixFirstName);
+
         await setDoc(doc(db, "users", user.uid), {
-            firstname: firstname,
-            lastname: lastname,
-            fullname: `${firstname} ${lastname}`,
+            firstname: fixFirstName,
+            lastname: fixLastName,
+            fullname: `${fixFirstName} ${fixLastName}`,
             email: user.email,
             createdAt: new Date().toISOString(),
             role: "User"

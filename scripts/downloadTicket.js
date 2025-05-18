@@ -17,6 +17,7 @@ export async function downloadTicketImage(ticketId) {
             height: ticketElement.offsetHeight,
             logging: true,
             backgroundColor: null,
+            ignoreElements: (element) => element.classList.contains("html2canvas-ignore")
         });
 
         if (!canvas || typeof canvas.toDataURL !== 'function') {

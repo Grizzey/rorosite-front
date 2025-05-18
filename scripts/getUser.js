@@ -78,8 +78,14 @@ export async function loadUserData(uid) {
         }
 
         if (userDoc.exists()) {
-            let newFullname = userDoc.data().fullname.replace(" ", ", ")
-            userNameElement.textContent = newFullname;
+            // let newFullname = userDoc.data().fullname.replace(" ", ", ") OLD
+            let getFirstName = userDoc.data().firstname;
+            let getLastName = userDoc.data().lastname;
+
+            let pfp = document.getElementById("pfp-image");
+            pfp.src = `https://ui-avatars.com/api/?name=${getFirstName}+${getLastName}&background=random&bold=true&format=svg`;
+            
+            userNameElement.textContent = `${getFirstName}` + ", " + `${getLastName}`;
 
             userEmailElement.textContent = userDoc.data().email;
         } else {
@@ -88,7 +94,7 @@ export async function loadUserData(uid) {
         }
 
         const ticketsSnapshot = await getDocs(collection(db, "users", uid, "tickets"));
-        ticketContainer.innerHTML = ""; // Clear previous tickets
+        ticketContainer.innerHTML = "";
 
         ticketsSnapshot.forEach((ticketDoc) => {
             const ticketData = ticketDoc.data();
@@ -136,7 +142,7 @@ export async function loadUserData(uid) {
     <p class="text-center text-xs text-gray-500 mt-3">Scan the QR code at the boarding gate</p>
 <div class="mt-4 text-center">
     <button onclick="downloadTicketImage('${ticketData.id}')"
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow">
+        class="html2canvas-ignore bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow">
     Download Ticket
 </button>
 </div>
@@ -144,7 +150,6 @@ export async function loadUserData(uid) {
 
 
             `;
-            // Append the ticket to the container
             ticketContainer.innerHTML += ticketHTML;
         });
     } catch (error) {

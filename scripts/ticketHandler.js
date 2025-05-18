@@ -68,10 +68,12 @@ export async function ticketHandler(user) {
         let ticketPrice;
         if (seat_type == "Economy") {
             ticketPrice = 500;
-        } else if (seat_type == "First Class") {
-            ticketPrice = 1500;
+        } else if (seat_type == "Premium Economy") {
+            ticketPrice = 600;
+        } else if (seat_type == "Business Class") {
+            ticketPrice = 700;
         } else {
-            ticketPrice = "TBA"
+            ticketPrice = "TBA";
         }
 
         // Add a new document to the "tickets" subcollection

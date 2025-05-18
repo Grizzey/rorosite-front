@@ -29,18 +29,30 @@ const initializeFirebase = async () => {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, (user) => {
+
+        const navbar_login = document.getElementById("navbar-login-button");
+
+        const ticketCards = ["index.html", "book.html"];
+        const manage_btn = document.getElementById("manage");
+
+        const infoPages = ["rates.html", "booking.html"];
+        const toBook_btn = document.querySelectorAll("#info-to-book");
+
         if (user) {
             if (document.getElementById("navbar-login-button")) {
-                document.getElementById("navbar-login-button").innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`
+                navbar_login.innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`;
+
                 // document.getElementById("navbar-login-button").innerText = "User Page"
+                navbar_login.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    window.location.href = "../pages/user.html";
+                });
 
-                const ticketCards = ["index.html", "../pages/book.html"];
-
+                //TICKETING PAGES
                 if (ticketCards.some(card => window.location.href.includes(card))) {
-                    const manage_btn = document.getElementById("manage");
-
                     if (manage_btn) {
-                        manage_btn.addEventListener("click", () => {
+                        manage_btn.addEventListener("click", (e) => {
+                            e.preventDefault();
                             window.location.href = "../pages/user.html";
                         });
                     }
@@ -48,9 +60,50 @@ const initializeFirebase = async () => {
                     console.log("No ticket cards available");
                 }
 
+
+                //ROUTES AND RATES TO TICKETING
+                if (infoPages.some(page => window.location.href.includes(page))) {
+                if (toBook_btn) {
+                    toBook_btn.forEach(btn => {
+                        btn.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            window.location.href = "../pages/book.html";
+                        });
+                    })
+                    
+                }
+            }
+
             }
         } else {
             console.log("No user is logged in.");
+
+            navbar_login.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = "../pages/login.html";
+            });
+
+            if (manage_btn) {
+                manage_btn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    window.location.href = "../pages/login.html";
+                });
+            }
+
+            if (infoPages.some(page => window.location.href.includes(page))) {
+                // if (toBook_btn) {
+                    toBook_btn.forEach(btn => {
+                        btn.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            window.location.href = "../pages/login.html";
+                        });
+                    })
+                    
+                // }
+            }
+
+
+            
         }
     });
 };

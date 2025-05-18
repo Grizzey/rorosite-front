@@ -44,6 +44,19 @@ async function submitRegister() {
 
     if (passwordValue !== repeatpasswordValue) {
         BUTTON.disabled = false;
+
+        [passwordField, repeatpasswordField].forEach(field => {
+            if (field.value) {
+                BUTTON.disabled = false;
+                field.classList.add("border-red-500");
+                isValid = false;
+            } else {
+                field.classList.remove("border-red-500");
+            }
+        });
+        
+        
+
         console.log("NOT SAME");
         errorMessage.textContent = "Passwords do not match.";
         errorMessage.classList.remove("hidden", "text-green-500", "bg-green-200");
