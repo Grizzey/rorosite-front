@@ -251,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Spinner control
-const spinnerTimeout = 4;
+const spinnerTimeout = 3;
 
 window.addEventListener("load", function () {
     const loader = document.getElementById("loader");
@@ -259,7 +259,7 @@ window.addEventListener("load", function () {
     setTimeout(() => {
         loader.classList.add("hidden");
         loader.style.display = "none";
-    }, spinnerTimeout * 100);
+    }, spinnerTimeout * 70);
 });
 
 // Delayed navigation with spinner
