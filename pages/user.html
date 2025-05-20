@@ -6,22 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com/3.2.7"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <title>Montecillo Roro | Booking</title>
     <link rel="icon" type="image/png" href="../assets/roro_transparent.png">
     <script src="../scripts/main.js" type="module"></script>
     <script src="../scripts/getUser.js" type="module"></script>
     <script src="../scripts/loginHandler.js" type="module"></script>
-    <script src="../scripts/checkUserToDashboard.js" type="module"></script>
     <script src="../scripts/downloadTicket.js" type="module"></script>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    <script>
-        function toAdminPanel() {
-            window.location.href = "admin.html";
-        }
-    </script>
 
     <style>
         body {
@@ -34,11 +28,9 @@
             -webkit-user-drag: none;
         }
     </style>
-
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<body class="h-full scroll-smooth" onload="loginCheck()">
+<body class="h-full scroll-smooth">
     <div id="loader"
         class="z-100 fixed inset-0 bg-white flex items-center justify-center z-100 transition-opacity duration-500">
         <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>

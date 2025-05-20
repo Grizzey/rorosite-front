@@ -35,10 +35,12 @@ const initializeFirebase = async () => {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    
+
 
     onAuthStateChanged(auth, (user) => {
-        const PROTECTRED_PAGES = ["admin.html"]
+        const PROTECTRED_PAGES = ["admin.html"];
+
+        const userPage = "user.html";
 
         const navbar_login = document.getElementById("navbar-login-button");
 
@@ -47,7 +49,7 @@ const initializeFirebase = async () => {
 
         const infoPages = ["rates.html", "booking.html"];
         const toBook_btn = document.querySelectorAll("#info-to-book");
-  
+
         if (user) {
             if (document.getElementById("navbar-login-button")) {
                 navbar_login.innerHTML = `<i class="fa fa-user" aria-hidden="true" style="margin-right: 10px"></i>User`;
@@ -87,6 +89,10 @@ const initializeFirebase = async () => {
             }
         } else {
             console.log("No user is logged in.");
+
+            if (document.location.href.includes(userPage)) {
+                document.location.href = "../pages/login.html";
+            }
 
             navbar_login.addEventListener("click", (e) => {
                 e.preventDefault();
@@ -145,13 +151,13 @@ document.addEventListener("DOMContentLoaded", function () {
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const btn = document.getElementById('dropdownDepartureButton');
-            const selectedDeparture = option.querySelector('.font-medium').textContent.trim(); // Get only the main text (e.g., "Iloilo")
+            const selectedDeparture = option.querySelector('.font-medium').textContent.trim();
 
             const dropdown = document.getElementById('Departuredropdown');
             if (dropdown) dropdown.classList.add('hidden');
 
             if (btn && selectedDeparture) {
-                btn.value = selectedDeparture; // Set only the main text for Departure button using value (for input fields)
+                btn.value = selectedDeparture;
             }
 
             // Enable all destination options first
@@ -178,13 +184,13 @@ document.addEventListener("DOMContentLoaded", function () {
         option.addEventListener('click', (e) => {
             e.preventDefault();
             const btn = document.getElementById('dropdownDestinationButton');
-            const selectedDestination = option.querySelector('.font-medium')?.textContent.trim(); // Get only the main text (e.g., "Batangas")
+            const selectedDestination = option.querySelector('.font-medium')?.textContent.trim();
 
             const dropdown = document.getElementById('Destinationdropdown');
             if (dropdown) dropdown.classList.add('hidden');
 
             if (btn && selectedDestination) {
-                btn.value = selectedDestination; // Set only the main text for Destination button using value (for input fields)
+                btn.value = selectedDestination;
             }
 
             // Enable all departure options first
@@ -239,15 +245,20 @@ document.addEventListener("DOMContentLoaded", function () {
         manage.addEventListener('click', () => activateTab(manage, book));
     }
 
-    flatpickr("#datepicker-range-start", {
-        dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
+    const startPicker = flatpickr("#datepicker-range-start", {
+        dateFormat: "d/m/Y", // Format: dd/mm/yyyy
         minDate: "today", // Disable past dates
+        onChange: function (selectedDates, dateStr, instance) {
+            // Set minDate of end date to selected start date
+            endPicker.set("minDate", selectedDates[0]);
+        }
     });
 
-    flatpickr("#datepicker-range-end", {
-        dateFormat: "d/m/Y", // Custom format (dd/mm/yyyy)
-        minDate: "today", // Disable past dates
+    const endPicker = flatpickr("#datepicker-range-end", {
+        dateFormat: "d/m/Y",
+        minDate: "today" // Will be updated dynamically when start date is selected
     });
+
 });
 
 // Spinner control
@@ -292,3 +303,9 @@ document.querySelectorAll('.toggle-pass').forEach(button => {
         }
     });
 });
+
+function toAdminPanel() {
+    window.location.href = "admin.html";
+}
+
+window.toAdminPanel = toAdminPanel;
